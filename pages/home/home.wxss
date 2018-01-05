@@ -1,1 +1,170 @@
 /* pages/home/home.wxss */
+/* 自定义轮播图wxss */
+.swiper-container{
+  position: relative;
+}
+.swiper-container .swiper{
+  height: 300rpx;
+}
+.swiper-container .swiper .img{
+  width: 100%;
+  height: 100%;
+}
+.swiper-container .dots{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+.swiper-container .dots .dot{
+  margin: 0 20rpx;
+  width: 18rpx;
+  height: 18rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  transition: all .6s;
+}
+.swiper-container .dots .dot.active{
+  width: 30rpx;
+  background: #f80;
+}
+
+
+/* 自定义轮播图wxss */
+.choose {
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: 500;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.issue, .list {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choose image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.line {
+  width: 3rpx;
+  height: 50rpx;
+  background: #cdcdcd;
+}
+
+.tit {
+  font-size: 38rpx;
+  font-weight: 600;
+  padding-top: 50rpx;
+}
+
+.item {
+  padding: 40rpx 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1rpx solid #ebebeb;
+}
+
+.item .avatar {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 30rpx;
+}
+
+.item .avatar image {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top .name {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 15rpx;
+}
+
+.top .school {
+  font-size: 24rpx;
+  color: #5c5c5c;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.top .school image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 12rpx;
+}
+
+.top .time {
+  font-size: 28rpx;
+  color: #5c5c5c;
+  margin-bottom: 5rpx;
+}
+
+.top .state {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.top .state image {
+  width: 40rpx;
+  height: 36rpx;
+}
+
+.front {
+  padding: 40rpx 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 120rpx;
+}
+
+.bottom .hot, .bottom .price {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.bottom .hot {
+  justify-content: flex-start;
+  color: #f5ba2e;
+}
+
+.bottom .price {
+  justify-content: flex-end;
+  color: #5c5c5c;
+}
+
+.bottom .line {
+  height: 30rpx;
+}
