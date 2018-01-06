@@ -1,7 +1,11 @@
 {
   "pages":[
+    
     "pages/home/home",
     "pages/my/my",
+    "pages/issue/issue",
+    "pages/reward/reward",
+
     "pages/index/index",
     "pages/logs/logs"
   ],

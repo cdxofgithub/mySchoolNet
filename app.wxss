@@ -4,5 +4,6 @@ page {
   font-size: 30rpx;
 }
 .container {
-  padding: 0 30rpx;
+  width: 690rpx;
+  margin: 0 auto;
 } 

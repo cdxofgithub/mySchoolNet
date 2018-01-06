@@ -1,2 +1,93 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<!--pages/my/my.wxml-->
+<import src="../../toast/toast.wxml" />
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view class="container">
+  <view class='header'>
+    <view class='avatar'>
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class='name'>
+      <view class='nickname'>{{userInfo.nickName}}</view>
+      <!-- <view class='sex'>
+        <image src='../../images/nv.png'></image>
+        <view>女生</view>
+      </view> -->
+    </view>
+  </view>
+  <view class='await'>
+    <view class='await_item' catchtap='awaitAffirm'>
+      <view class='name'>已发布</view>
+      <view class='num'>0</view>
+    </view>
+    <view class='line'></view>
+    <view class='await_item' catchtap='awaitPay'>
+      <view class='name'>待接单</view>
+      <view class='num'>0</view>
+    </view>
+    <view class='line'></view>
+    <view class='await_item' catchtap='awaitLive'>
+      <view class='name'>待完成</view>
+      <view class='num'>0</view>
+    </view>
+    <view class='line'></view>
+    <view class='await_item' catchtap='awaitLiveEvaluate'>
+      <view class='name'>已完成</view>
+      <view class='num'>0</view>
+    </view>
+  </view>
+  <view class='item' catchtap='toAllOrder'>
+    <view class='left'>
+      <view class='icon'>
+        <image src='../../images/allOrder.png'></image>
+      </view>
+      <view class='text'>全部订单</view>
+    </view>
+    <view class='right'>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view>
+  <view class='item' catchtap='toAllOrder'>
+    <view class='left'>
+      <view class='icon'>
+        <image src='../../images/tuikuan.png'></image>
+      </view>
+      <view class='text'>退款中心</view>
+    </view>
+    <view class='right'>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view>
+  <!-- <view class='item' catchtap='toAllOrder'>
+    <view class='left'>
+      <view class='icon'>
+        <image src='../../images/info.png'></image>
+      </view>
+      <view class='text'>个人信息</view>
+    </view>
+    <view class='right'>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view> -->
+  <view class='item' catchtap='toAllOrder'>
+    <view class='left'>
+      <view class='icon'>
+        <image src='../../images/fankui.png'></image>
+      </view>
+      <view class='text'>我要反馈</view>
+    </view>
+    <view class='right'>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view>
+  <view class='item' catchtap='outLogin'>
+    <view class='left'>
+      <view class='icon'>
+        <image src='../../images/out.png'></image>
+      </view>
+      <view class='text'>退出登录</view>
+    </view>
+    <view class='right'></view>
+  </view>
+  <!-- <button open-type='getUserInfo'>获取授权</button>  -->
+</view>

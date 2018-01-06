@@ -20,15 +20,15 @@
 }
 .swiper-container .dots .dot{
   margin: 0 20rpx;
-  width: 18rpx;
-  height: 18rpx;
+  width: 20rpx;
+  height: 20rpx;
   background: #fff;
-  border-radius: 8rpx;
-  transition: all .6s;
+  border-radius: 10rpx;
+  transition: all .5s;
 }
 .swiper-container .dots .dot.active{
   width: 30rpx;
-  background: #f80;
+  background: #f5ba2e;
 }
 
 
@@ -66,6 +66,15 @@
   font-size: 38rpx;
   font-weight: 600;
   padding-top: 50rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tit .writ {
+  width: 8rpx;
+  height: 38rpx;
+  margin-right: 16rpx;
+  background: #f5ba2e;
 }
 
 .item {
@@ -136,10 +145,11 @@
 }
 
 .front {
+  width: 570rpx;
   padding: 40rpx 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap; 
 }
 
 .bottom {

@@ -1,0 +1,35 @@
+/* pages/reward/reward.wxss */
+.swiper-tab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  line-height: 100rpx;
+  background: #ffffff;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 50%;
+  color: #666;
+  text-align: centerl
+}
+.swiper-tab-list .name {
+  width: 120rpx;
+  height: 90rpx;
+  text-align: center;
+  margin: 0 auto;
+}
+.on {
+  color: #f5ba2e;
+  border-bottom: 5rpx solid #f5ba2e;
+}
+
+.swiper-box {
+  margin-top: 98rpx;
+}
+@import "../home/home.wxss"

@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class="swiper-container">
-  <swiper autoplay="auto" interval="5000" duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+  <swiper autoplay="auto" interval="5000" circular duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
     <block wx:for="{{slider}}" wx:key="unique">
       <swiper-item>
         <image src="{{item.picUrl}}" class="img"></image>
@@ -15,18 +15,20 @@
   </view>
 </view>
 <view class='choose'>
-  <view class='issue'>
+  <view class='issue' catchtap='issueReward'>
     <image src='../../images/issue.png'></image>
     <view>发布悬赏令</view>
   </view>
   <view class='line'></view>
-  <view class='list'>
+  <view class='list' catchtap='rewardList'>
     <image src='../../images/list.png'></image>
     <view>全部悬赏令</view>
   </view>
 </view>
 <view class='container'>
-  <view class='tit'>热门悬赏令</view>
+  <view class='tit'>
+    <view class='writ'></view>
+  热门悬赏令</view>
   <view class='item'>
     <view class='avatar'>
       <image src='../../images/avatar.jpg'></image>
@@ -43,7 +45,7 @@
           <view class='state'><image src='../../images/ling.png'></image></view>
         </view>
       </view>
-      <view class='front'>帮我代取一个快递，在14号楼附近的韵达...</view>
+      <view class='front'>帮我代取一个快递，在14号楼附近在14号楼附近的韵达</view>
       <view class='bottom'>
         <view class='hot'>热门</view>
         <view class='line'></view>
@@ -75,4 +77,5 @@
       </view>
     </view>
   </view>
+  
 </view>

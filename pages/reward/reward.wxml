@@ -1,0 +1,97 @@
+<!--pages/reward/reward.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list" data-current="0" bindtap="swichNav">
+    <view class="name  {{currentTab==0 ? 'on' : ''}}">最近发布</view>
+  </view>
+
+  <view class="swiper-tab-list" data-current="1" bindtap="swichNav">
+    <view class="name  {{currentTab==1 ? 'on' : ''}}">历史发布</view>
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="container swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <swiper-item>
+    <view class='item'>
+      <view class='avatar'>
+        <image src='../../images/avatar.jpg'></image>
+      </view>
+      <view class='content'>
+        <view class='top'>
+          <view>
+            <view class='name'>Freedom、</view>
+            <view class='school'>
+              <image src='../../images/girl.png'></image>南阳理工学院</view>
+          </view>
+          <view>
+            <view class='time'>1分钟前</view>
+            <view class='state'>
+              <image src='../../images/ling.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='front'>帮我代取一个快递，在14号楼附近在14号楼附近的韵达</view>
+        <view class='bottom'>
+          <view class='hot'>热门</view>
+          <view class='line'></view>
+          <view class='price'>赚5元</view>
+        </view>
+      </view>
+    </view>
+    <view class='item'>
+      <view class='avatar'>
+        <image src='../../images/avatar.jpg'></image>
+      </view>
+      <view class='content'>
+        <view class='top'>
+          <view>
+            <view class='name'>Freedom、</view>
+            <view class='school'>
+              <image src='../../images/girl.png'></image>南阳理工学院</view>
+          </view>
+          <view>
+            <view class='time'>1分钟前</view>
+            <view class='state'>
+              <image src='../../images/ling.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='front'>帮我代取一个快递，在14号楼附近在14号楼附近的韵达</view>
+        <view class='bottom'>
+          <view class='hot'>热门</view>
+          <view class='line'></view>
+          <view class='price'>赚5元</view>
+        </view>
+      </view>
+    </view>
+    
+  </swiper-item>
+
+  <swiper-item>
+    <view class='item'>
+      <view class='avatar'>
+        <image src='../../images/avatar.jpg'></image>
+      </view>
+      <view class='content'>
+        <view class='top'>
+          <view>
+            <view class='name'>Freedom、</view>
+            <view class='school'>
+              <image src='../../images/girl.png'></image>南阳理工学院</view>
+          </view>
+          <view>
+            <view class='time'>1分钟前</view>
+            <view class='state'>
+              <image src='../../images/ling.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='front'>帮我代取一个快递，在14号楼附近在14号楼附近的韵达</view>
+        <view class='bottom'>
+          <view class='hot'>热门</view>
+          <view class='line'></view>
+          <view class='price'>赚5元</view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>

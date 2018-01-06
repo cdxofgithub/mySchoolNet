@@ -1,4 +1,6 @@
 //app.js
+import {request} from './utils/request.js'
+var wxToast = require('toast/toast.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -8,10 +10,22 @@ App({
 
     // 登录
     wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      success: function (res) {
+        if (res.code) {
+          console.log(res.cod)
+          var url = 'http://1t896460i2.iask.in/f/api/user/login'
+          var data = {
+            code: res.code
+          }
+          request(url, JSON.stringify(data), 'POST', function(res) {
+            console.log(res)
+            
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
       }
-    })
+    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -34,6 +48,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
-  }
+    userInfo: null,
+    request: request
+  },
+  wxToast
 })
