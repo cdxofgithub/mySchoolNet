@@ -13,6 +13,7 @@ page {
 }
 .write {
   padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #ebebeb;
 }
 textarea {
   width: 100%;
@@ -56,13 +57,16 @@ textarea {
   align-items: center;
 }
 .item .left {
-  width: 40%;
+  width: 200rpx;
+}
+.item .left view {
+  width: 100%;
 }
 .price .right {
   width: 220rpx;
   text-align: center;
 }
-.phone .right {
+.phone .right, .address .right {
   text-align: right;
 }
 .item .left image {
@@ -80,21 +84,13 @@ textarea {
   background: #fff;
   padding: 30rpx 60rpx;
 }
+.switch .right image {
+  width: 16rpx;
+  height: 30rpx;
+}
 .item .right switch {
-  transform: scale(0.8)
+  transform: scale(0.9)
 }
 .item .left input {
   width: 600rpx;
-}
-.submit {
-  width: 70%;
-  height: 100%;
-  margin: 0 auto;
-  background: #f5ba2e;
-  color: #fff;
-  font-size: 38rpx;
-  border-radius: 8rpx;
-  text-align: center;
-  line-height: 100rpx;
-  margin-top: 40rpx;
 }

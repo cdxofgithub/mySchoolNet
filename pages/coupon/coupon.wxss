@@ -1,0 +1,14 @@
+/* pages/coupon/coupon.wxss */
+.empty {
+  width: 100%;
+  text-align: center;
+  margin-top: 300rpx;
+}
+.empty image {
+  width: 127rpx;
+  height: 127rpx;
+}
+.empty .text {
+  margin-top: 40rpx;
+  font-size: 34rpx;
+}

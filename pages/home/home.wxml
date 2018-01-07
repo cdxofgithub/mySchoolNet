@@ -1,4 +1,6 @@
 <!--pages/home/home.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
 <view class="swiper-container">
   <swiper autoplay="auto" interval="5000" circular duration="500" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
     <block wx:for="{{slider}}" wx:key="unique">

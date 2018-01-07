@@ -1,31 +1,32 @@
 //app.js
-import {request} from './utils/request.js'
+import { request, URL } from './utils/request.js'
 var wxToast = require('toast/toast.js')
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          console.log(res.cod)
-          var url = 'http://1t896460i2.iask.in/f/api/user/login'
-          var data = {
-            code: res.code
-          }
-          request(url, JSON.stringify(data), 'POST', function(res) {
-            console.log(res)
-            
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
+    var that = this
+    //检查登录态
+    wx.checkSession({
+      success: function () {
+        var url = URL + '/f/api/user/checkToken'
+        var data = {
+          accesstoken: wx.getStorageSync('accesstoken')
         }
+        request(url, JSON.stringify(data), 'POST', function (res) {
+          console.log(res)
+          if (res.data.status == '0') {
+            return
+          } else {
+            console.log('token过期')
+            that.login()
+          }
+        })
+      },
+      fail: function () {
+        console.log('过期')
+        //登录态过期
+        that.login()
       }
-    });
+    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -47,9 +48,71 @@ App({
       }
     })
   },
+  login: function () {
+    // 登录
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+        if (res.code) {
+          var url = URL + '/f/api/user/login'
+          var data = {
+            code: res.code
+          }
+          request(url, JSON.stringify(data), 'POST', function (res) {
+            if (res.data.status == '0') {
+              console.log(res)
+              wx.setStorageSync('accesstoken', res.data.data.accesstoken)
+              wx.getUserInfo({
+                success: function (resp) {
+                  var userInfo = resp.userInfo //用户基本信息
+                  var nickName = userInfo.nickName //用户名
+                  var avatarUrl = userInfo.avatarUrl //头像链接
+                  var gender = userInfo.gender //性别 0：未知、1：男、2：女
+
+                  //更新用户信息
+                  var url = URL + '/f/api/user/updateUserInfo'
+                  var data = {
+                    nickName: nickName,
+                    avatarUrl: avatarUrl,
+                    gender: gender,
+                    accesstoken: res.data.data.accesstoken
+                  }
+                  console.log(JSON.stringify(data))
+                  request(url, JSON.stringify(data), 'POST', function (res) {
+                    console.log(res)
+                    if (res.data.status == '0') {
+                      console.log('信息更新成功')
+                    } else {
+                      wxToast({
+                        title: '服务器内部出错'
+                      })
+                    }
+                  })
+                }
+              })
+            } else {
+              wxToast({
+                title: '服务器内部出错'
+              })
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      },
+      fail: function (res) {
+        wxToast({
+          title: '用户登录失败'
+        })
+      }
+    });
+  },
   globalData: {
-    userInfo: null,
-    request: request
+    userInfo: null
+  },
+  utils: {
+    request: request,
+    URL: URL
   },
   wxToast
 })

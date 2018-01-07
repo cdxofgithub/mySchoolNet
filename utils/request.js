@@ -8,10 +8,21 @@ export const request = (url, data, method, callback) => {
       'content-type': 'application/json'
     },
     success: function (res) {
-      if (res.data.success) {
-        return typeof callback == "function" && callback(res)
+      console.log(res)
+      if (res.data.status == '401') {
+        wx.showModal({
+          title: 'token过期',
+          content: '请重新登录',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
       } else {
-        
+        return typeof callback == "function" && callback(res)
       }
       
     },
@@ -21,3 +32,5 @@ export const request = (url, data, method, callback) => {
   })
 }
 
+
+export const URL = 'http://1t896460i2.iask.in'

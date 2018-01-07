@@ -1,0 +1,17 @@
+/* pages/success/success.wxss */
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 200rpx;
+}
+.desc {
+  margin: 50rpx 0;
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #f5ba2e;
+}
+.icon image {
+  width: 100rpx;
+  height: 100rpx;
+}

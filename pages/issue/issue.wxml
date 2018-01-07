@@ -1,21 +1,32 @@
 <!--pages/issue/issue.wxml-->
+<import src="../../toast/toast.wxml"/>
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
 <view class='contant write'>
-  <textarea placeholder='请描述一下您的悬赏~'></textarea>
-  <view class='uploadImgs'>
+  <textarea placeholder='请描述一下您的悬赏~' bindinput="descInput"></textarea>
+  <!-- <view class='uploadImgs'>
   </view>
   <view class='addImg'>
     <image src='../../images/addImg.png'></image>
-  </view>
+  </view> -->
 </view>
-<view class='hint'>温暖小提示： 长按可以删除图片哦~</view>
+<!-- <view class='hint'>温暖小提示： 长按可以删除图片哦~</view> -->
 <view class='contant'>
   <view class='item price'>
     <view class='left'>
       <!-- <image src='../../images/price.png'></image> -->
-      <view>悬赏价格</view>
+      <view>赏　　金</view>
     </view>
     <view class='right'>
-      ￥ <input placeholder='输入数字'></input> 元
+      ￥
+      <input type='digit' placeholder='输入数字' bindinput='priceInput'></input> 元
+    </view>
+  </view>
+  <view class='item address'>
+    <view class='left'>
+      <view>送达地址</view>
+    </view>
+    <view class='right'>
+      <input placeholder='请输入详细的地址哦' bindinput='addressInput'></input>
     </view>
   </view>
   <view class='item phone'>
@@ -23,17 +34,16 @@
       <view>联系方式</view>
     </view>
     <view class='right'>
-      <input placeholder='请输入您的电话号码'></input>
+      <input type='number' placeholder='请输入您的手机号码' bindinput='phoneInput'></input>
     </view>
   </view>
 </view>
-<view class='item switch'>
-    <view class='left'>
-      <view>我要置顶</view>
-    </view>
-    <view class='right'>
-      <switch color='#f5ba2e'></switch>
-    </view>
+<view class='item switch' catchtap='useCoupon'>
+  <view class='left'>
+    <view>使用优惠券</view>
   </view>
-<view class='submit'>立即发布</view>
-
+  <view class='right'>
+    <image src='../../images/creatOrder_2.png'></image>
+  </view>
+</view>
+<view class='submit' catchtap='submit'>立即发布</view>

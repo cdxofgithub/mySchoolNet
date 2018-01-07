@@ -1,0 +1,5 @@
+<!--pages/coupon/coupon.wxml-->
+<view class='empty'>
+  <image src='../../images/no_dd@2x.png'></image>
+  <view class='text'>暂无可用优惠券！</view>
+</view>
