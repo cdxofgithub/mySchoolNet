@@ -31,51 +31,27 @@
   <view class='tit'>
     <view class='writ'></view>
   最新悬赏令</view>
-  <view class='item'>
+  <view class='item' wx:for="{{taskList}}" wx:key="{{index}}">
     <view class='avatar'>
-      <image src='../../images/avatar.jpg'></image>
+      <image src='{{item.headImg}}'></image>
     </view>
     <view class='content'>
       <view class='top'>
         <view>
-          <view class='name'>Freedom、</view>
+          <view class='name'>{{item.nickName}}</view>
           <view class='school'>
           <image src='../../images/girl.png'></image>南阳理工学院</view>
         </view>
         <view>
-          <view class='time'>1分钟前</view>
+          <view class='time'>{{item.distanceTime}}</view>
           <view class='state'><image src='../../images/ling.png'></image></view>
         </view>
       </view>
-      <view class='front'>帮我代取一个快递，在14号楼附近在14号楼附近的韵达</view>
+      <view class='front'>{{item.content}}</view>
       <view class='bottom'>
-        <view class='hot'>热门</view>
+        <view class='hot'>新发布</view>
         <view class='line'></view>
-        <view class='price'>赚5元</view>
-      </view>
-    </view>
-  </view>
-  <view class='item'>
-    <view class='avatar'>
-      <image src='../../images/avatar.jpg'></image>
-    </view>
-    <view class='content'>
-      <view class='top'>
-        <view>
-          <view class='name'>Freedom、</view>
-          <view class='school'>
-          <image src='../../images/girl.png'></image>南阳理工学院</view>
-        </view>
-        <view>
-          <view class='time'>1分钟前</view>
-          <view class='state'><image src='../../images/ling.png'></image></view>
-        </view>
-      </view>
-      <view class='front'>帮我代取一个快递，在14号楼附近的韵达...</view>
-      <view class='bottom'>
-        <view class='hot'>热门</view>
-        <view class='line'></view>
-        <view class='price'>赚5元</view>
+        <view class='price'>赚{{item.price}}元</view>
       </view>
     </view>
   </view>

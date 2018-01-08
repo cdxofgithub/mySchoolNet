@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "我校网"
+  "navigationBarTitleText": "我校网",
+  "enablePullDownRefresh": true
 }

@@ -77,7 +77,6 @@ Page({
         accesstoken: wx.getStorageSync('accesstoken')
       }
       var that = this
-      console.log(data)
       app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
         if (res.data.status == '0') {
           that.getPayInfo(res.data.data.missionId)
@@ -97,10 +96,8 @@ Page({
       accesstoken: wx.getStorageSync('accesstoken')
     }
     var that = this
-    console.log(data)
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       wx.hideLoading()
-      console.log(res)
       if (res.data.status == '0') {
         var result = res.data.data
         wx.requestPayment({
@@ -115,16 +112,13 @@ Page({
             })
           },
           'fail': function (res) {
-            console.log(result.payinfo_id)
             if (res.errMsg == 'requestPayment:fail cancel') {
               var url = app.utils.URL + '/f/api/mission/cancel'
               var data = {
                 payinfoId: result.payinfo_id,
                 accesstoken: wx.getStorageSync('accesstoken')
               }
-              console.log(data)
               app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-                console.log(res)
                 if (res.data.status == '0') {
                   app.wxToast({
                     title: '取消支付成功'
