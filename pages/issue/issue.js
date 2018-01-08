@@ -34,15 +34,11 @@ Page({
     })
   },
   submit: function () {
-    wx.showLoading({
-      title: '发布中...',
-      mask: true
-    })
     if (!this.data.describe) {
       app.wxToast({
         title: '描述不能为空'
       })
-    } else if (!(/^[0-9]+.?[0-9]*$/.test(this.data.price)) || parseInt(this.data.price) < 1) {
+    } else if (!(/^[0-9]+.?[0-9]*$/.test(this.data.price))) {  // || parseInt(this.data.price) < 1
       app.wxToast({
         title: '赏金最低为1元'
       })
@@ -68,6 +64,10 @@ Page({
         title: '号码格式错误'
       })
     } else {
+      wx.showLoading({
+        title: '发布中...',
+        mask: true
+      })
       var url = app.utils.URL + '/f/api/mission/add'
       var data = {
         description: this.data.describe,

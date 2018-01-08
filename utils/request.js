@@ -8,7 +8,6 @@ export const request = (url, data, method, callback) => {
       'content-type': 'application/json'
     },
     success: function (res) {
-      console.log(res)
       if (res.data.status == '401') {
         wx.showModal({
           title: 'token过期',
