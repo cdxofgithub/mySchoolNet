@@ -6,17 +6,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    slider: [
-      { picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000rVobR3xG73f.jpg' },
-      { picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000j6Tax0WLWhD.jpg' },
-      { picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg' }
+    slider: [{
+        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000rVobR3xG73f.jpg'
+      },
+      {
+        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000j6Tax0WLWhD.jpg'
+      },
+      {
+        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg'
+      }
     ],
     swiperCurrent: 0,
     taskListParams: {
       indexPage: 1,
-      listFlag: 1,   // 1刷新，2加
+      listFlag: 1, // 1刷新，2加
       mission_time: ''
-    }
+    },
+    isRefresh: true
   },
   swiperChange: function (e) {
     this.setData({
@@ -47,19 +53,22 @@ Page({
       that.setData({
         taskListParams: that.data.taskListParams
       })
-    }
-    if (state == 'up') {
+    } else if (state == 'up') {
       console.log('进入了上拉加载')
       that.data.taskListParams.mission_time = that.data.taskList[(that.data.taskList.length - 1)].releaseTime
       that.data.taskListParams.listFlag = 2
-      
       that.setData({
         taskListParams: that.data.taskListParams
       })
+    } else {
+      console.log('第一次加载')
+      that.data.taskListParams.indexPage = 1
+      that.data.taskListParams.mission_time = '',
+      that.data.taskListParams.listFlag = 1
     }
-    var url = app.utils.URL + '/f/api/mission/list'
     var data = that.data.taskListParams
-    
+    console.log(data)
+    var url = app.utils.URL + '/f/api/mission/list'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       console.log(res)
       wx.hideLoading()
@@ -67,29 +76,38 @@ Page({
         if (state == 'down') {
           var taskList = res.data.data.missions.concat(that.data.taskList)
           that.setData({
-            taskList: taskList,   //任务列表
-            listFlag: res.data.data.listFlag,   //当前页数
-            updataTask: res.data.data.missions.length   //更新条数
+            taskList: taskList, //任务列表
+            listFlag: res.data.data.listFlag, //当前页数
+            updataTask: res.data.data.missions.length //更新条数
           })
           wx.stopPullDownRefresh()
           app.wxToast({
             title: '更新了' + that.data.updataTask + '条任务'
           })
         } else if (state == 'up') {
-          var taskList = that.data.taskList.concat(res.data.data.missions)
+          var result = res.data.data.missions
+          var taskList = that.data.taskList.concat(result)
           that.setData({
-            taskList: res.data.data.missions,   //任务列表
-            listFlag: res.data.data.listFlag,   //当前页数
-            updataTask: res.data.data.missions.length   //更新条数
+            taskList: res.data.data.missions, //任务列表
+            listFlag: res.data.data.listFlag, //当前页数
+            updataTask: res.data.data.missions.length //更新条数
           })
+          if (result < 6) {
+            that.setData({
+              isRefresh: false
+            })
+          }
+          app.wxToast({
+            title: '加载了' + that.data.updataTask + '条任务'
+          }) 
         } else {
           that.setData({
-            taskList: res.data.data.missions,   //任务列表
-            listFlag: res.data.data.listFlag,   //当前页数
-            updataTask: res.data.data.missions.length   //更新条数
+            taskList: res.data.data.missions, //任务列表
+            listFlag: res.data.data.listFlag, //当前页数
+            updataTask: res.data.data.missions.length //更新条数
           })
         }
-        
+
       } else {
         app.wxToast({
           title: '服务器内部错误'
@@ -144,17 +162,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var that = this
-    that.data.taskListParams.indexPage = that.data.taskListParams.indexPage
-    that.setData({
-      taskListParams: that.data.taskListParams.indexPage
-    })
+    if (that.data.isRefresh) {
+      var that = this
+      that.data.taskListParams.indexPage = parseInt(that.data.taskListParams.indexPage) + 1
+      that.setData({
+        taskListParams: that.data.taskListParams.indexPage
+      })
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   }
 })

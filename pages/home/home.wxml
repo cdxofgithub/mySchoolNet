@@ -40,7 +40,7 @@
         <view>
           <view class='name'>{{item.nickName}}</view>
           <view class='school'>
-          <image src='../../images/girl.png'></image>南阳理工学院</view>
+          <image src="{{item.gender == '1'? '../../images/boy.png' : (item.gender == '2' ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
         </view>
         <view>
           <view class='time'>{{item.distanceTime}}</view>
@@ -55,5 +55,5 @@
       </view>
     </view>
   </view>
-  
+  <view class='noMore' wx:if="{{!isRefresh}}">大兄弟，没有更多了~</view>
 </view>

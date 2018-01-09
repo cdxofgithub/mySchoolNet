@@ -178,3 +178,9 @@
 .bottom .line {
   height: 30rpx;
 }
+.noMore {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #5c5c5c;
+}
