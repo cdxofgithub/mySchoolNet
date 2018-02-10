@@ -1,0 +1,124 @@
+ <!--pages/detail/detail.wxml-->
+<import src="../../toast/toast.wxml" />
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view class='content'>
+  <view class='item'>
+    <view class='avatar'>
+      <image src='{{taskInfo.headImg}}'></image>
+    </view>
+    <view class='content'>
+      <view class='top'>
+        <view>
+          <view class='name'>{{taskInfo.nickName}}</view>
+          <view class='school'>
+            <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+        </view>
+        <view>
+          <view class='time'>{{taskInfo.distanceTime}}</view>
+          <view class='state'>
+            <image src='../../images/ling.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='detail'>{{taskInfo.content}}</view>
+    </view>
+  </view>
+</view>
+<view class='action'>
+  <view class='price'>
+    <image src='../../images/money.png'></image>
+    <view>已在线支付报酬
+      <text>{{taskInfo.price}}</text> 元</view>
+  </view>
+  <view class='progress'>
+    <view class='circle_left'></view>
+  </view>
+</view>
+<view class='action'>
+  <view class='price'>
+    <image src='../../images/remark.png'></image>
+    <view>{{taskInfo.remark? taskInfo.remark: '无备注'}}</view>
+  </view>
+  <view class='progress'>
+    <view class='circle_left'></view>
+  </view>
+</view>
+<view class='action'>
+  <div class="content-line">
+    <image src="../../images/progress.png"></image>
+    <div class="follow-up-route {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}"></div>
+    <image src="{{(taskInfo.status == 2 || taskInfo.status == 3)? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
+    <div class="follow-up-route {{taskInfo.status == 3? '' : 'un'}}"></div>
+    <image src="{{taskInfo.status == 3? '../../images/arrive.png' : '../../images/unArrive.png'}}"></image>
+  </div>
+  <div class="content-text">
+    <span class="content-title">发布中</span>
+    <span class="content-title {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}">被抢啦</span>
+    <span class="content-title {{taskInfo.status == 3? '' : 'un'}}">已完成</span>
+  </div>
+  <!-- <div class="content-text-time">
+    <span class="content-time">2018-01-16 08:00</span>
+    <span class="content-time">2018-01-16 09:00</span>
+    <span class="content-time">2018-01-17 10:00</span>
+  </div> -->
+</view>
+<!-- <view class='message'>
+  <view class='message_tit'>全部评论
+    <text>（1）</text>
+  </view>
+  <view class='message_items'>
+    <view class='message_item'>
+      <view class='avatar'>
+        <image src='../../images/avatar.jpg'></image>
+      </view>
+      <view class='message_details'>
+        <view class='critic'>Freedom、</view>
+        <view class='matter'>哈哈哈</view>
+        <view class='other'>
+          <view class='time'>昨天17:09</view>
+          <view class='handle'>
+            <image src='../../images/report.png'></image>
+            <image class='reply_icon' src='../../images/reply.png'></image>
+          </view>
+        </view>
+        <view class='replys'>
+          <view class='reply'>
+            <text>梦中情人、</text> 回复
+            <text>Freedom、 ：</text> 哈哈
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>  -->
+
+
+<view class='bottom' wx:if="{{taskInfo.status == 1}}">
+  <view class='left'>待定
+    <!-- <view class='comment' catchtap='comment'>
+      <image src='../../images/comment.png'></image>
+      <view class='flag'>评论</view>
+    </view>
+    <view class='like' catchtap='isLike'>
+      <image src="{{like? '../../images/likeLight.png' : '../../images/like.png'}}"></image>
+      <view class='flag'>{{likeNum}}</view>
+    </view> -->
+  </view>
+  <view class='right' catchtap='receiving'>我要接单</view>
+</view>
+<view class='review' wx:if="{{!isComment}}">
+  <view class='top'>
+    <view>评论</view>
+    <image catchtap='close' src='../../images/wrong.png'></image>
+  </view>
+  <view class='centre'>
+    <textarea placeholder='请写下您的评论哦~'></textarea>
+  </view>
+  <view class='bot'>
+    <view class='rule'>
+      <image src='../../images/warm.png'></image>请遵循用户协议
+    </view>
+    <view class='send'>发送</view>
+  </view>
+</view>
+<!-- <view class='shade' wx:if="{{!isComment}}" catchtap='close'></view> -->

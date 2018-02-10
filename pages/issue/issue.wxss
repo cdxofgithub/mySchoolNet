@@ -94,3 +94,13 @@ textarea {
 .item .left input {
   width: 600rpx;
 }
+.remark .left {
+  width: 30%;
+}
+.remark .right {
+  width: 70%;
+}
+.remark .right input {
+  width: 100%;
+  text-align: right;
+}

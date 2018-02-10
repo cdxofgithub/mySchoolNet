@@ -1,0 +1,22 @@
+<!--pages/login/login.wxml-->
+<view class='login'>
+  <view class='avatar'></view>
+  <view class='form'>
+    <view class='item_40'>
+      <view class='left'>
+        <view class='name'>账号</view>
+        <input placeholder='请输入正确的手机号'></input>
+      </view>
+      <view class='right'></view>
+    </view>
+    <view class='item_40'>
+      <view class='left'>
+        <view class='name'>密码</view>
+        <input password placeholder='请输入密码'></input>
+      </view>
+      <view class='right'></view>
+    </view>
+  </view>
+  <view class='forget'>忘记密码？</view>
+  <view class='submit'>登录</view>
+</view>

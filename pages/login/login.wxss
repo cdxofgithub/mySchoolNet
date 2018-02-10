@@ -1,0 +1,37 @@
+/* pages/login/login.wxss */
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto;
+  padding: 80rpx 0
+}
+.avatar image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+.form {
+  
+}
+.item_40 {
+  font-size: 38rpx;
+  padding: 40rpx 30rpx
+}
+.item_40 .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.item_40 .left .name {
+  width: 120rpx;
+}
+.item_40 .left input {
+  color: #5c5c5c;
+}
+.forget {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30rpx;
+  margin-top: 20rpx;
+  color: #5c5c5c;
+}

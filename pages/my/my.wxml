@@ -4,90 +4,142 @@
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
 <view class="container">
   <view class='header'>
-    <view class='avatar'>
-      <image src="{{userInfo.avatarUrl}}"></image>
-    </view>
-    <view class='name'>
-      <view class='nickname'>{{userInfo.nickName}}</view>
-      <!-- <view class='sex'>
+    <view class='info'>
+      <view class='avatar'>
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class='name'>
+        <view class='nickname'>{{userInfo.nickName}}</view>
+        <!-- <view class='sex'>
         <image src='../../images/nv.png'></image>
         <view>女生</view>
       </view> -->
-    </view>
-  </view>
-  <view class='await'>
-    <view class='await_item' catchtap='awaitAffirm'>
-      <view class='name'>已发布</view>
-      <view class='num'>0</view>
-    </view>
-    <view class='line'></view>
-    <view class='await_item' catchtap='awaitPay'>
-      <view class='name'>待接单</view>
-      <view class='num'>0</view>
-    </view>
-    <view class='line'></view>
-    <view class='await_item' catchtap='awaitLive'>
-      <view class='name'>待完成</view>
-      <view class='num'>0</view>
-    </view>
-    <view class='line'></view>
-    <view class='await_item' catchtap='awaitLiveEvaluate'>
-      <view class='name'>已完成</view>
-      <view class='num'>0</view>
-    </view>
-  </view>
-  <view class='item' catchtap='toAllOrder'>
-    <view class='left'>
-      <view class='icon'>
-        <image src='../../images/allOrder.png'></image>
       </view>
-      <view class='text'>全部订单</view>
     </view>
-    <view class='right'>
-      <image src='../../images/creatOrder_2.png'></image>
-    </view>
+
+    <image src='../../images/logout.png' catchtap='logout'></image>
   </view>
-  <view class='item' catchtap='toAllOrder'>
-    <view class='left'>
-      <view class='icon'>
-        <image src='../../images/tuikuan.png'></image>
-      </view>
-      <view class='text'>退款中心</view>
-    </view>
-    <view class='right'>
-      <image src='../../images/creatOrder_2.png'></image>
-    </view>
-  </view>
-  <!-- <view class='item' catchtap='toAllOrder'>
-    <view class='left'>
-      <view class='icon'>
-        <image src='../../images/info.png'></image>
-      </view>
-      <view class='text'>个人信息</view>
-    </view>
-    <view class='right'>
-      <image src='../../images/creatOrder_2.png'></image>
-    </view>
-  </view> -->
-  <view class='item' catchtap='toAllOrder'>
-    <view class='left'>
-      <view class='icon'>
-        <image src='../../images/fankui.png'></image>
-      </view>
-      <view class='text'>我要反馈</view>
-    </view>
-    <view class='right'>
-      <image src='../../images/creatOrder_2.png'></image>
-    </view>
-  </view>
-  <view class='item' catchtap='outLogin'>
-    <view class='left'>
-      <view class='icon'>
-        <image src='../../images/out.png'></image>
-      </view>
-      <view class='text'>退出登录</view>
-    </view>
-    <view class='right'></view>
-  </view>
-  <!-- <button open-type='getUserInfo'>获取授权</button>  -->
 </view>
+<view class='bg_f1'></view>
+<view class='laba'>
+  <image src='../../images/laba.png'></image>
+  <text>官方客服电话： 400-123456</text>
+</view>
+<view class='bg_f1'></view>
+<view class="swiper-tab">
+  <view class="swiper-tab-list" data-current="0" bindtap="swichNav">
+    <view class="name  {{currentTab==0 ? 'on' : ''}}">我的发布</view>
+  </view>
+
+  <view class="swiper-tab-list" data-current="1" bindtap="swichNav">
+    <view class="name  {{currentTab==1 ? 'on' : ''}}">我的接取</view>
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}rpx" bindchange="bindChange">
+  <swiper-item>
+    <view>
+      <view class='await'>
+        <view class='await_item' catchtap='getTaskStatus' data-status='6' data-statustext="已取消">
+          <view class='name'>已取消</view>
+          <view class='num'>{{issueStatusInfo['6']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='1' data-statustext="待接单">
+          <view class='name'>待接单</view>
+          <view class='num'>{{issueStatusInfo['1']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='2' data-statustext="完成中">
+          <view class='name'>完成中</view>
+          <view class='num'>{{issueStatusInfo['2']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='4' data-statustext="已完成">
+          <view class='name'>已完成</view>
+          <view class='num'>{{issueStatusInfo['4']}}</view>
+        </view>
+      </view>
+      <view class='item' catchtap='toAllOrder'>
+        <view class='left'>
+          <view class='icon'>
+            <image src='../../images/history.png'></image>
+          </view>
+          <view class='text'>发布历史</view>
+        </view>
+        <view class='right'>
+          <image src='../../images/creatOrder_2.png'></image>
+        </view>
+      </view>
+      <view class='item' catchtap='toAllOrder'>
+        <view class='left'>
+          <view class='icon'>
+            <image src='../../images/tuikuan.png'></image>
+          </view>
+          <view class='text'>退款中心</view>
+        </view>
+        <view class='right'>
+          <image src='../../images/creatOrder_2.png'></image>
+        </view>
+      </view>
+      <view class='item' catchtap='toAllOrder'>
+        <view class='left'>
+          <view class='icon'>
+            <image src='../../images/fankui.png'></image>
+          </view>
+          <view class='text'>我要反馈</view>
+        </view>
+        <view class='right'>
+          <image src='../../images/creatOrder_2.png'></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view>
+      <view class='await'>
+        <view class='await_item' catchtap='getTaskStatus' data-status='5' data-statustext="已取消">
+          <view class='name'>已取消</view>
+          <view class='num'>{{issueStatusInfo['5']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='2' data-statustext="待完成">
+          <view class='name'>待完成</view>
+          <view class='num'>{{issueStatusInfo['2']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='3' data-statustext="待确认">
+          <view class='name'>待确认</view>
+          <view class='num'>{{issueStatusInfo['3']}}</view>
+        </view>
+        <view class='line'></view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='4' data-statustext="已完成">
+          <view class='name'>已完成</view>
+          <view class='num'>{{issueStatusInfo['4']}}</view>
+        </view>
+      </view>
+      <view class='item' catchtap='toAllOrder'>
+        <view class='left'>
+          <view class='icon'>
+            <image src='../../images/history.png'></image>
+          </view>
+          <view class='text'>接取历史</view>
+        </view>
+        <view class='right'>
+          <image src='../../images/creatOrder_2.png'></image>
+        </view>
+      </view>
+      <view class='item' catchtap='toAllOrder'>
+        <view class='left'>
+          <view class='icon'>
+            <image src='../../images/fankui.png'></image>
+          </view>
+          <view class='text'>我要反馈</view>
+        </view>
+        <view class='right'>
+          <image src='../../images/creatOrder_2.png'></image>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>

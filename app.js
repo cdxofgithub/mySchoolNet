@@ -4,22 +4,21 @@ var wxToast = require('toast/toast.js')
 App({
   onLaunch: function () {
     var that = this
+    // that.login()
     //检查登录态
     wx.checkSession({
       success: function () {
-        var url = URL + '/f/api/user/checkToken'
-        var data = {
-          accesstoken: wx.getStorageSync('accesstoken')
-        }
-        request(url, JSON.stringify(data), 'POST', function (res) {
-          console.log(res)
-          if (res.data.status == '0') {
-            return
-          } else {
-            console.log('token过期')
-            that.login()
-          }
-        })
+        // var url = URL + '/f/api/user/checkToken'
+        // var data = {
+        //   accesstoken: wx.getStorageSync('accesstoken')
+        // }
+        // request(url, JSON.stringify(data), 'POST', function (res) {
+        //   if (res.data.status == '0') {
+        //     return
+        //   } else {
+        //     that.login()
+        //   }
+        // })
       },
       fail: function () {
         console.log('过期')
@@ -81,18 +80,15 @@ App({
                   request(url, JSON.stringify(data), 'POST', function (res) {
                     console.log(res)
                     if (res.data.status == '0') {
-                      console.log('信息更新成功')
-                    } else {
                       wxToast({
-                        title: '服务器内部出错'
+                        title: '信息更新成功'
                       })
+                      setTimeout(function() {
+                        wx.navigateBack()
+                      }, 1000)
                     }
                   })
                 }
-              })
-            } else {
-              wxToast({
-                title: '服务器内部出错'
               })
             }
           })

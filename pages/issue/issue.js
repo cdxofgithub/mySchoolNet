@@ -33,6 +33,11 @@ Page({
       phone: e.detail.value
     })
   },
+  remarkInput: function(e) {
+    this.setData({
+      remark: e.detail.value
+    })
+  },
   submit: function () {
     if (!this.data.describe) {
       app.wxToast({
@@ -74,6 +79,7 @@ Page({
         price: this.data.price,
         phone: this.data.phone,
         address: this.data.address,
+        remark: this.data.remark,
         accesstoken: wx.getStorageSync('accesstoken')
       }
       var that = this
@@ -90,7 +96,7 @@ Page({
   },
   //取得支付信息 
   getPayInfo: function (missionId) {
-    var url = app.utils.URL + '/f/api/payInfo/unifiedorder'
+    var url = app.utils.URL + '/f/api/receive/unifiedorder'
     var data = {
       missionId: missionId,
       accesstoken: wx.getStorageSync('accesstoken')

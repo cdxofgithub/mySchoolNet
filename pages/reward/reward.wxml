@@ -1,7 +1,7 @@
 <!--pages/reward/reward.wxml-->
 <view class="swiper-tab">
   <view class="swiper-tab-list" data-current="0" bindtap="swichNav">
-    <view class="name  {{currentTab==0 ? 'on' : ''}}">最近发布</view>
+    <view class="name  {{currentTab==0 ? 'on' : ''}}">今日发布</view>
   </view>
 
   <view class="swiper-tab-list" data-current="1" bindtap="swichNav">

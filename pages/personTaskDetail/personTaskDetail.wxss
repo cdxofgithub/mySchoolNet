@@ -1,0 +1,3 @@
+/* pages/personTaskDetail/personTaskDetail.wxss */
+
+@import '../detail/detail.wxss'

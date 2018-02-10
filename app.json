@@ -1,12 +1,15 @@
 {
   "pages":[
-    
     "pages/home/home",
     "pages/my/my",
     "pages/issue/issue",
     "pages/reward/reward",
     "pages/coupon/coupon",
     "pages/success/success",
+    "pages/login/login",
+    "pages/detail/detail",
+    "pages/taskStatus/taskStatus",
+    "pages/personTaskDetail/personTaskDetail",
 
     "pages/index/index",
     "pages/logs/logs"
@@ -36,5 +39,8 @@
         "text": "我的"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 8000
   }
 }

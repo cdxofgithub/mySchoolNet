@@ -7,18 +7,17 @@ Page({
    */
   data: {
     slider: [{
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000rVobR3xG73f.jpg'
-      },
-      {
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000j6Tax0WLWhD.jpg'
-      },
-      {
-        picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg'
-      }
+      picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000rVobR3xG73f.jpg'
+    },
+    {
+      picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000j6Tax0WLWhD.jpg'
+    },
+    {
+      picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg'
+    }
     ],
     swiperCurrent: 0,
     taskListParams: {
-      indexPage: 1,
       listFlag: 1, // 1刷新，2加
       mission_time: ''
     },
@@ -47,72 +46,90 @@ Page({
       mask: true
     })
     if (state == 'down') {
-      console.log('进入了下拉刷新')
-      that.data.taskListParams.mission_time = that.data.taskList[0].releaseTime
+      // that.data.taskListParams.mission_time = that.data.taskList[0].releaseTime
+      // that.data.taskListParams.listFlag = 1
+      // that.setData({
+      //   taskListParams: that.data.taskListParams
+      // })
+      that.data.taskListParams.mission_time = '',
       that.data.taskListParams.listFlag = 1
-      that.setData({
-        taskListParams: that.data.taskListParams
-      })
     } else if (state == 'up') {
-      console.log('进入了上拉加载')
       that.data.taskListParams.mission_time = that.data.taskList[(that.data.taskList.length - 1)].releaseTime
       that.data.taskListParams.listFlag = 2
       that.setData({
         taskListParams: that.data.taskListParams
       })
     } else {
-      console.log('第一次加载')
-      that.data.taskListParams.indexPage = 1
       that.data.taskListParams.mission_time = '',
       that.data.taskListParams.listFlag = 1
     }
     var data = that.data.taskListParams
-    console.log(data)
     var url = app.utils.URL + '/f/api/mission/list'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       console.log(res)
-      wx.hideLoading()
-      if (res.data.status == '0') {
-        if (state == 'down') {
-          var taskList = res.data.data.missions.concat(that.data.taskList)
-          that.setData({
-            taskList: taskList, //任务列表
-            listFlag: res.data.data.listFlag, //当前页数
-            updataTask: res.data.data.missions.length //更新条数
-          })
-          wx.stopPullDownRefresh()
-          app.wxToast({
-            title: '更新了' + that.data.updataTask + '条任务'
-          })
-        } else if (state == 'up') {
-          var result = res.data.data.missions
-          var taskList = that.data.taskList.concat(result)
-          that.setData({
-            taskList: res.data.data.missions, //任务列表
-            listFlag: res.data.data.listFlag, //当前页数
-            updataTask: res.data.data.missions.length //更新条数
-          })
-          if (result < 6) {
+      //延迟loading
+      setTimeout(function () {
+        wx.hideLoading()
+        if (res.data.status == '0') {
+          if (state == 'down') {
+            // var taskList = res.data.data.missions.concat(that.data.taskList)
+            // that.setData({
+            //   taskList: taskList, //任务列表
+            //   updataTask: res.data.data.missions.length //更新条数
+            // })
+            // wx.stopPullDownRefresh()
+            // app.wxToast({
+            //   title: '更新了' + that.data.updataTask + '条任务',
+            //   tapClose: true,
+            //   duration: 800,
+            //   tapClose: true
+            // })
             that.setData({
-              isRefresh: false
+              taskList: res.data.data.missions, //任务列表
+              updataTask: res.data.data.missions.length, //更新条数
+              isRefresh: true
+            })
+            wx.stopPullDownRefresh()
+            app.wxToast({
+              title: '刷新成功',
+              tapClose: true,
+              duration: 800,
+              tapClose: true
+            })
+          } else if (state == 'up') {
+            var result = res.data.data.missions
+            var taskList = that.data.taskList.concat(result)
+            that.setData({
+              taskList: taskList, //任务列表
+              updataTask: res.data.data.missions.length //更新条数
+            })
+            if (result.length < 6) {
+              that.setData({
+                isRefresh: false
+              })
+            }
+            app.wxToast({
+              title: '加载了' + that.data.updataTask + '条任务',
+              tapClose: true,
+              duration: 800,
+              tapClose: true
+            })
+          } else {
+            that.setData({
+              taskList: res.data.data.missions, //任务列表
+              updataTask: res.data.data.missions.length //更新条数
             })
           }
-          app.wxToast({
-            title: '加载了' + that.data.updataTask + '条任务'
-          }) 
-        } else {
-          that.setData({
-            taskList: res.data.data.missions, //任务列表
-            listFlag: res.data.data.listFlag, //当前页数
-            updataTask: res.data.data.missions.length //更新条数
-          })
         }
+      }, 1000)
 
-      } else {
-        app.wxToast({
-          title: '服务器内部错误'
-        })
-      }
+    })
+  },
+  //进入任务详情
+  toDetail: function (e) {
+    var currIndex = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '../detail/detail?taskId=' + currIndex,
     })
   },
   /**
@@ -162,12 +179,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (that.data.isRefresh) {
+    if (this.data.isRefresh) {
       var that = this
-      that.data.taskListParams.indexPage = parseInt(that.data.taskListParams.indexPage) + 1
-      that.setData({
-        taskListParams: that.data.taskListParams.indexPage
-      })
+      that.getTaskList('up')
     }
   },
 

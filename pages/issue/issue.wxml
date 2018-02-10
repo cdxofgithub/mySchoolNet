@@ -38,6 +38,14 @@
     </view>
   </view>
 </view>
+<view class='item remark switch'>
+  <view class='left'>
+    <view>备注</view>
+  </view>
+  <view class='right'>
+    <input placeholder='别忘了备注哦~' bindinput='remarkInput'></input>
+  </view>
+</view>
 <view class='item switch' catchtap='useCoupon'>
   <view class='left'>
     <view>使用优惠券</view>
