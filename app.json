@@ -1,5 +1,6 @@
 {
   "pages":[
+    
     "pages/home/home",
     "pages/my/my",
     "pages/issue/issue",
@@ -10,7 +11,8 @@
     "pages/detail/detail",
     "pages/taskStatus/taskStatus",
     "pages/personTaskDetail/personTaskDetail",
-
+    
+    "pages/test/test",
     "pages/index/index",
     "pages/logs/logs"
   ],

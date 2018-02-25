@@ -16,12 +16,16 @@ Page({
       title: '加载中~',
     })
     var that = this
+    if (flag == 1 && status == 6) {
+      status = '5,6'
+    }
     var data = {
       flag: flag,
       status: status,
       index: index,
       accesstoken: wx.getStorageSync('accesstoken')
     }
+    console.log(data)
     var url = app.utils.URL + '/f/api/mission/listByMap'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       setTimeout(function () {

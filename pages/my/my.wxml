@@ -25,6 +25,7 @@
   <image src='../../images/laba.png'></image>
   <text>官方客服电话： 400-123456</text>
 </view>
+
 <view class='bg_f1'></view>
 <view class="swiper-tab">
   <view class="swiper-tab-list" data-current="0" bindtap="swichNav">

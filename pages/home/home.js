@@ -34,8 +34,11 @@ Page({
     })
   },
   rewardList: function () {
-    wx.navigateTo({
-      url: '../reward/reward',
+    // wx.navigateTo({
+    //   url: '../reward/reward',
+    // })
+    app.wxToast({
+      title: '正在施工中...'
     })
   },
   //获取首页列表
@@ -129,9 +132,10 @@ Page({
   toDetail: function (e) {
     var currIndex = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../detail/detail?taskId=' + currIndex,
+      url: '../detail/detail?taskId=' + currIndex
     })
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -150,7 +154,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

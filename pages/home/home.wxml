@@ -24,7 +24,7 @@
   <view class='line'></view>
   <view class='list' catchtap='rewardList'>
     <image src='../../images/list.png'></image>
-    <view>全部悬赏令</view>
+    <view>校粉领地</view>
   </view>
 </view>
 <view class='container'>
