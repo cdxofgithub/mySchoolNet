@@ -3,6 +3,6 @@
   <view class='icon'>
     <image src='../../images/success.png'></image>
   </view>
-  <view class='desc'>恭喜您，发布成功!</view>
-  <view class='submit' catchtap='submit'>返回首页</view>
+  <view class='desc'>{{text}}</view>
+  <view class='submit' catchtap='submit'>{{catchtapText}}</view>
 </view>

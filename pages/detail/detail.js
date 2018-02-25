@@ -50,16 +50,18 @@ Page({
     }
     var that = this
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-      wx.hideLoading()
-      if (res.data.status == '0') {
-        that.setData({
-          taskInfo: res.data.data
-        })
-      } else {
-        app.wxToast({
-          title: '服务器内部错误'
-        })
-      }
+      setTimeout(function () {
+        wx.hideLoading()
+        if (res.data.status == '0') {
+          that.setData({
+            taskInfo: res.data.data
+          })
+        } else {
+          app.wxToast({
+            title: '服务器内部错误'
+          })
+        }
+      }, 1000)
     })
   },
   //接单

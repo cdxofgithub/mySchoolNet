@@ -34,7 +34,10 @@ export const request = (url, data, method, callback) => {
       
     },
     fail: function (err) {
-      return typeof callback == "function" && callback(err)
+      wxToast({
+        title: '网络超时'
+      })
+      wx.hideLoading()
     }
   })
 }

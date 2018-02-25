@@ -179,6 +179,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    // if (this.data.taskList.length < 6) {
+      
+    // }
     if (this.data.isRefresh) {
       var that = this
       that.getTaskList('up')

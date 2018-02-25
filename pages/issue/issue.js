@@ -114,7 +114,7 @@ Page({
           'paySign': result.paySign,
           'success': function (res) {
             wx.navigateTo({
-              url: '../success/success',
+              url: '../success/success?text=恭喜您，发布成功!&catchtapText=返回首页',
             })
           },
           'fail': function (res) {

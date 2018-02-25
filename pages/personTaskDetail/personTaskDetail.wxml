@@ -41,18 +41,16 @@
   <view class="content-line">
     <image src="../../images/progress.png"></image>
     <view class="follow-up-route {{(statusLightNum > 1)? '' : 'un'}}"></view>
-    <image src="{{statusLightNum > 1 ? (cancelIcon? '../../images/arrive.png' : '../../images/Progress.png') : '../../images/unProgress.png'}}"></image>
-
-    <view wx:if="{{statusShow > 2}}" class="follow-up-route"></view>
-    <image wx:if="{{statusShow > 2}}" src="{{taskInfo.status == 3? '../../images/arrive.png' : '../../images/unArrive.png'}}"></image>
-
+    <image src="{{statusLightNum > 1 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
+    <view class="follow-up-route {{(statusLightNum > 2)? '' : 'un'}}"></view>
+    <image src="{{statusLightNum > 2 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
 
   </view>
   <view class="content-text">
-    <span class="content-title">发布中</span>
-    <span class="content-title {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}">被抢啦</span>
+    <span class="content-title">{{firstStatusText}}</span>
+    <span class="content-title {{statusLightNum > 1 ? '' : 'un'}}">{{SecondStatusText}}</span>
 
-    <span wx:if="{{statusShow > 2}}" class="content-title {{taskInfo.status == 3? '' : 'un'}}">已完成</span>
+    <span class="content-title {{statusLightNum > 2 ? '' : 'un'}}">{{ThirdStatusText}}</span>
 
 
   </view>
@@ -62,23 +60,33 @@
     <span class="content-time">2018-01-17 10:00</span>
   </view> -->
 </view>
-<view class='action'>
+<!-- <view class='action'>
   <view class='price'>
     <view>完成时间</view>
     <view></view>
   </view>
-</view>
-<view class='action'>
+</view> -->
+<view class='action' wx:if="{{taskInfo.toNickName}}">
   <view class='price'>
-    <view>接取人昵称</view>
-    <view></view>
+    <view class='receive'>接取人昵称：</view>
+    <view class='text'>{{taskInfo.toNickName}}</view>
   </view>
 </view>
-<view class='action'>
+<view class='action' wx:if="{{taskInfo.toPhone}}">
   <view class='price'>
-    <view>手机号</view>
-    <view></view>
+    <view class='receive'>接取人号码：</view>
+    <view class='text'>{{taskInfo.toPhone}}</view>
   </view>
 </view>
+<!-- <view class='action' wx:if="{{taskInfo}}">
+  <view class='price'>
+    <view class='receive'>完成时间：</view>
+    <view class='text'>{{taskInfo}}</view>
+  </view>
+</view> -->
 
-<view class='submit' wx:if="{{buttonShow}}">{{buttonText}}</view>
+<view class='footer' wx:if="{{buttonShow && currStatus != 22}}" catchtap='{{catchtapText}}'>{{buttonText}}</view>
+<view class='bottom' wx:if="{{buttonShow && currStatus == 22}}">
+  <view class='left' catchtap='receiveFinishTask'>取消任务</view>
+  <view class='right' catchtap='finishTask'>任务完成</view>
+</view>

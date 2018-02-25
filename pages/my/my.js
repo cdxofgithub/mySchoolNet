@@ -107,7 +107,13 @@ Page({
       }
     })
     //获取发布信息
-    this.getPersonInfo(1)
+    if (this.data.currentTab == 0) {
+      this.getPersonInfo(1)
+    } else {
+      this.getPersonInfo(2)
+    }
+    
+    
   },
 
   /**

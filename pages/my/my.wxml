@@ -42,22 +42,22 @@
       <view class='await'>
         <view class='await_item' catchtap='getTaskStatus' data-status='6' data-statustext="已取消">
           <view class='name'>已取消</view>
-          <view class='num'>{{issueStatusInfo['6']}}</view>
+          <view class='num'>{{issueStatusInfo['6']? issueStatusInfo['6'] : 0}}</view>
         </view>
         <view class='line'></view>
         <view class='await_item' catchtap='getTaskStatus' data-status='1' data-statustext="待接单">
           <view class='name'>待接单</view>
-          <view class='num'>{{issueStatusInfo['1']}}</view>
+          <view class='num'>{{issueStatusInfo['1']? issueStatusInfo['1'] : 0}}</view>
         </view>
         <view class='line'></view>
         <view class='await_item' catchtap='getTaskStatus' data-status='2' data-statustext="完成中">
           <view class='name'>完成中</view>
-          <view class='num'>{{issueStatusInfo['2']}}</view>
+          <view class='num'>{{issueStatusInfo['2']? issueStatusInfo['2'] : 0}}</view>
         </view>
         <view class='line'></view>
-        <view class='await_item' catchtap='getTaskStatus' data-status='4' data-statustext="已完成">
-          <view class='name'>已完成</view>
-          <view class='num'>{{issueStatusInfo['4']}}</view>
+        <view class='await_item' catchtap='getTaskStatus' data-status='3' data-statustext="待确认">
+          <view class='name'>待确认</view>
+          <view class='num'>{{issueStatusInfo['3']? issueStatusInfo['3'] : 0}}</view>
         </view>
       </view>
       <view class='item' catchtap='toAllOrder'>
@@ -100,22 +100,22 @@
       <view class='await'>
         <view class='await_item' catchtap='getTaskStatus' data-status='5' data-statustext="已取消">
           <view class='name'>已取消</view>
-          <view class='num'>{{issueStatusInfo['5']}}</view>
+          <view class='num'>{{issueStatusInfo['5']? issueStatusInfo['5'] : 0}}</view>
         </view>
         <view class='line'></view>
         <view class='await_item' catchtap='getTaskStatus' data-status='2' data-statustext="待完成">
           <view class='name'>待完成</view>
-          <view class='num'>{{issueStatusInfo['2']}}</view>
+          <view class='num'>{{issueStatusInfo['2']? issueStatusInfo['2'] : 0}}</view>
         </view>
         <view class='line'></view>
         <view class='await_item' catchtap='getTaskStatus' data-status='3' data-statustext="待确认">
           <view class='name'>待确认</view>
-          <view class='num'>{{issueStatusInfo['3']}}</view>
+          <view class='num'>{{issueStatusInfo['3']? issueStatusInfo['3'] : 0}}</view>
         </view>
         <view class='line'></view>
         <view class='await_item' catchtap='getTaskStatus' data-status='4' data-statustext="已完成">
           <view class='name'>已完成</view>
-          <view class='num'>{{issueStatusInfo['4']}}</view>
+          <view class='num'>{{issueStatusInfo['4']? issueStatusInfo['4'] : 0}}</view>
         </view>
       </view>
       <view class='item' catchtap='toAllOrder'>

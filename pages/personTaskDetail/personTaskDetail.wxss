@@ -1,3 +1,9 @@
 /* pages/personTaskDetail/personTaskDetail.wxss */
 
+.action .price .receive {
+  width: 220rpx
+}
+.action .price .text {
+  color: #333;
+}
 @import '../detail/detail.wxss'
