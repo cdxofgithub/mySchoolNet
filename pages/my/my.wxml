@@ -61,7 +61,7 @@
           <view class='num'>{{issueStatusInfo['3']? issueStatusInfo['3'] : 0}}</view>
         </view>
       </view>
-      <view class='item' catchtap='toAllOrder'>
+      <view class='item' data-flag="1" catchtap='toAllOrder'>
         <view class='left'>
           <view class='icon'>
             <image src='../../images/history.png'></image>
@@ -72,7 +72,7 @@
           <image src='../../images/creatOrder_2.png'></image>
         </view>
       </view>
-      <view class='item' catchtap='toAllOrder'>
+      <view class='item' data-flag="1" data-refund='1' catchtap='toAllOrder'>
         <view class='left'>
           <view class='icon'>
             <image src='../../images/tuikuan.png'></image>
@@ -83,7 +83,7 @@
           <image src='../../images/creatOrder_2.png'></image>
         </view>
       </view>
-      <view class='item' catchtap='toAllOrder'>
+      <view class='item' catchtap='tickling'>
         <view class='left'>
           <view class='icon'>
             <image src='../../images/fankui.png'></image>
@@ -119,7 +119,7 @@
           <view class='num'>{{issueStatusInfo['4']? issueStatusInfo['4'] : 0}}</view>
         </view>
       </view>
-      <view class='item' catchtap='toAllOrder'>
+      <view class='item' data-flag="2" catchtap='toAllOrder'>
         <view class='left'>
           <view class='icon'>
             <image src='../../images/history.png'></image>
@@ -130,7 +130,7 @@
           <image src='../../images/creatOrder_2.png'></image>
         </view>
       </view>
-      <view class='item' catchtap='toAllOrder'>
+      <view class='item' catchtap='tickling'>
         <view class='left'>
           <view class='icon'>
             <image src='../../images/fankui.png'></image>
@@ -144,3 +144,20 @@
     </view>
   </swiper-item>
 </swiper>
+
+<!-- 获取手机号码自定义弹框 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
+  
+  <!--drawer content-->  
+  <view class="drawer_title">小提示</view>  
+  <view class="drawer_content"> 
+    <view class='rule'>反馈需知：</view> 
+    <view class='info'>● 反馈后我们将统一时间按顺序回复；</view>  
+    <view class='info'>● 反馈内容我们将认真查阅审核，请耐心等待；</view> 
+    <view class='info'>● 衷心感谢您为系统的更进一步作出的反馈。</view> 
+  </view>  
+  <button plain="true" session-from="webapp" class="btn_ok" bindgetphonenumber="getPhoneNumber" open-type="contact" bindtap="powerDrawer" data-statu="close">确定</button>
+</view> 

@@ -13,7 +13,6 @@ Page({
     firstStatusText: '',
     SecondStatusText: '',
     ThirdStatusText: '',
-    cancelIcon: false,
     catchtapText: ''
   },
   //获取任务详情
@@ -28,11 +27,9 @@ Page({
       accesstoken: wx.getStorageSync('accesstoken'),
       flag: flag
     }
-    console.log(data)
     var that = this
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       setTimeout(function () {
-        console.log(res)
         wx.hideLoading()
         if (res.data.status == '0') {
           that.setData({
@@ -63,10 +60,8 @@ Page({
             missionId: that.data.taskId,
             accesstoken: wx.getStorageSync('accesstoken')
           }
-          console.log(data)
           app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
             wx.hideLoading()
-            console.log(res)
             if (res.data.status == '0') {
               wx.navigateTo({
                 url: '../success/success?text=操作成功!&catchtapText=返回首页',
@@ -96,10 +91,8 @@ Page({
             missionId: that.data.taskId,
             accesstoken: wx.getStorageSync('accesstoken')
           }
-          console.log(data)
           app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
             wx.hideLoading()
-            console.log(res)
             if (res.data.status == '0') {
               wx.navigateTo({
                 url: '../success/success?text=操作成功!&catchtapText=返回首页',
@@ -128,10 +121,8 @@ Page({
             missionId: that.data.taskId,
             accesstoken: wx.getStorageSync('accesstoken')
           }
-          console.log(data)
           app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
             wx.hideLoading()
-            console.log(res)
             if (res.data.status == '0') {
               wx.navigateTo({
                 url: '../success/success?text=操作成功!&catchtapText=返回首页',
@@ -161,10 +152,8 @@ Page({
             missionId: that.data.taskId,
             accesstoken: wx.getStorageSync('accesstoken')
           }
-          console.log(data)
           app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
             wx.hideLoading()
-            console.log(res)
             if (res.data.status == '0') {
               wx.navigateTo({
                 url: '../success/success?text=操作成功!&catchtapText=返回首页',
@@ -181,7 +170,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var taskId = options.taskId
     var flag = options.flag
     var status = options.status
@@ -190,14 +178,13 @@ Page({
       title: des + ' - ' + '详情'
     })
     var currStatus = flag + status
-    if (currStatus == '16') {
+    if (currStatus == '16' || currStatus == '15') {
       this.setData({
         buttonShow: false,
         statusLightNum: 2,
         firstStatusText: '待接单',
         SecondStatusText: '已取消',
         ThirdStatusText: '已退款',
-        cancelIcon: true
       })
     } else if (currStatus == '11') {
       this.setData({
@@ -207,7 +194,6 @@ Page({
         firstStatusText: '待接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '已完成',
-        cancelIcon: false,
         catchtapText: 'cancelTask'
       })
     } else if (currStatus == '12') {
@@ -216,8 +202,7 @@ Page({
         statusLightNum: 2,
         firstStatusText: '待接单',
         SecondStatusText: '完成中',
-        ThirdStatusText: '已完成',
-        cancelIcon: false
+        ThirdStatusText: '已完成'
       })
     } else if (currStatus == '13') {
       this.setData({
@@ -227,7 +212,6 @@ Page({
         firstStatusText: '待接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '待确认',
-        cancelIcon: false,
         catchtapText: 'sureTask'
       })
     } else if (currStatus == '25') {
@@ -236,8 +220,7 @@ Page({
         statusLightNum: 2,
         firstStatusText: '已接单',
         SecondStatusText: '完成中',
-        ThirdStatusText: '已取消  ',
-        cancelIcon: true
+        ThirdStatusText: '已取消'
       })
     } else if (currStatus == '22') {
       this.setData({
@@ -247,7 +230,6 @@ Page({
         firstStatusText: '已接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '待确认',
-        cancelIcon: false,
         catchtapText: 'finishTask'
       })
     } else if (currStatus == '23') {
@@ -257,7 +239,6 @@ Page({
         firstStatusText: '已接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '待确认',
-        cancelIcon: false
       })
     } else if (currStatus == '24') {
       this.setData({
@@ -266,7 +247,6 @@ Page({
         firstStatusText: '已接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '已完成',
-        cancelIcon: false
       })
     }
     this.setData({

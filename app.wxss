@@ -115,3 +115,65 @@ page {
   text-align: center;
   line-height: 100rpx;
 }
+
+/* 自定义弹框 */
+/*mask*/  
+.drawer_screen {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  background: #000;  
+  opacity: 0.5;  
+  overflow: hidden;  
+}  
+  
+/*content*/  
+.drawer_box {  
+  width: 650rpx;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 50%;  
+  left: 0;  
+  z-index: 1001;  
+  background: #FAFAFA;  
+  margin: -150px 50rpx 0 50rpx;  
+  border-radius: 3px;  
+} 
+.drawer_box button[plain] {
+  color: #3CC51F;  
+  border: none;
+  border-top:1px solid #E8E8EA;
+  background: transparent;
+}
+  
+.drawer_title{  
+  padding:15px;  
+  font: 20px "microsoft yahei";  
+  text-align: center;  
+}  
+.drawer_content {  
+  padding: 0 40rpx 30rpx;
+} 
+.drawer_content .rule {
+  margin-bottom: 20rpx
+} 
+.drawer_content .info {
+  padding: 0 30rpx;
+  font-size: 26rpx;
+  color: #5c5c5c;
+  margin-bottom: 10rpx;
+} 
+  
+.btn_ok{  
+  padding: 10px;  
+  font: 20px "microsoft yahei";  
+  text-align: center;  
+  border-top: 1px solid #E8E8EA;  
+  color: #3CC51F;  
+}  
+button.btn_ok {
+  border-radius: 0;
+}

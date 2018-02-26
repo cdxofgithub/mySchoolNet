@@ -69,7 +69,6 @@ Page({
     var data = that.data.taskListParams
     var url = app.utils.URL + '/f/api/mission/list'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-      console.log(res)
       //延迟loading
       setTimeout(function () {
         wx.hideLoading()

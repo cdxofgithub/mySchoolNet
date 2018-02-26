@@ -51,7 +51,6 @@ App({
     // 登录
     wx.login({
       success: function (res) {
-        console.log(res.code)
         if (res.code) {
           var url = URL + '/f/api/user/login'
           var data = {
@@ -78,7 +77,6 @@ App({
                   }
                   console.log(JSON.stringify(data))
                   request(url, JSON.stringify(data), 'POST', function (res) {
-                    console.log(res)
                     if (res.data.status == '0') {
                       wxToast({
                         title: '信息更新成功'

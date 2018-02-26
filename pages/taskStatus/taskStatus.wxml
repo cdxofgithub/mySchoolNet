@@ -3,7 +3,7 @@
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
 <view wx:if="{{show}}">
   <view class='container'  wx:if="{{taskList.length > 0}}">
-  <view class='item' wx:for="{{taskList}}" wx:key="{{index}}" data-index="{{item.id}}" catchtap='toDetail'>
+  <view class='item' wx:for="{{taskList}}" wx:key="{{index}}" data-index="{{index}}" data-id="{{item.id}}" catchtap='toDetail'>
     <view class='avatar'>
       <image src='{{item.headImg}}'></image>
     </view>

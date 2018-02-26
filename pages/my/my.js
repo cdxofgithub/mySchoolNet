@@ -59,9 +59,7 @@ Page({
       accesstoken: wx.getStorageSync('accesstoken')
     }
     var that = this
-    console.log(data)
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-      console.log(res)
       if (res.data.status == '0') {
         that.setData({
           issueStatusInfo: res.data.data
@@ -69,12 +67,85 @@ Page({
       }
     })
   },
+  //悬赏历史
+  toAllOrder: function(e) {
+    var flag = e.currentTarget.dataset.flag
+    var refund = e.currentTarget.dataset.refund
+    console.log(refund)
+    var history = (flag == 1 ? 1 : 2)
+    if (refund) {
+      var status = '5,6'
+      history = 3
+    } else {
+      var status = '1,2,3,4,5,6'
+    }
+    
+    wx.navigateTo({
+      url: '../taskStatus/taskStatus?flag=' + flag + '&status=' + status + '&history=' + history,
+    })
+  },
 
-  getPhoneNumber: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-  } ,
+  //我要反馈
+  tickling: function() {
+    this.powerDrawer('open')
+  },
+  // 自定义弹框
+  powerDrawer: function (e) {
+    if (e == 'open') {
+      this.util(e)
+    } else {
+      var currentStatu = e.currentTarget.dataset.statu;
+      this.util(currentStatu)
+    }
+  },
+  util: function (currentStatu) {
+    /* 动画部分 */
+    // 第1步：创建动画实例   
+    var animation = wx.createAnimation({
+      duration: 200,  //动画时长  
+      timingFunction: "linear", //线性  
+      delay: 0  //0则不延迟  
+    });
+
+    // 第2步：这个动画实例赋给当前的动画实例  
+    this.animation = animation;
+
+    // 第3步：执行第一组动画  
+    animation.opacity(0).rotateX(-100).step();
+
+    // 第4步：导出动画对象赋给数据对象储存  
+    this.setData({
+      animationData: animation.export()
+    })
+
+    // 第5步：设置定时器到指定时候后，执行第二组动画  
+    setTimeout(function () {
+      // 执行第二组动画  
+      animation.opacity(1).rotateX(0).step();
+      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象  
+      this.setData({
+        animationData: animation
+      })
+
+      //关闭  
+      if (currentStatu == "close") {
+        this.setData(
+          {
+            showModalStatus: false
+          }
+        );
+      }
+    }.bind(this), 200)
+
+    // 显示  
+    if (currentStatu == "open") {
+      this.setData(
+        {
+          showModalStatus: true
+        }
+      );
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

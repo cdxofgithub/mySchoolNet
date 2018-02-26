@@ -139,6 +139,5 @@
     <view class='info'>● 授权成功后，此将作为您的唯一认证号码。</view>
   </view>  
   <button class="btn_ok" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" bindtap="powerDrawer" data-statu="close">确定</button>
-  <!-- <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>   -->
 </view> 
 <!-- <view class='shade' wx:if="{{!isComment}}" catchtap='close'></view> -->

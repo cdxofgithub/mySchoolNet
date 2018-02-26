@@ -25,12 +25,10 @@ Page({
       index: index,
       accesstoken: wx.getStorageSync('accesstoken')
     }
-    console.log(data)
     var url = app.utils.URL + '/f/api/mission/listByMap'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       setTimeout(function () {
         wx.hideLoading()
-        console.log(res)
         if (res.data.status == '0') {
           that.setData({
             taskList: that.data.taskList.concat(res.data.data.values),
@@ -43,12 +41,13 @@ Page({
   },
   //进入任务详情
   toDetail: function (e) {
+    var taskId = e.currentTarget.dataset.id
     var currIndex = e.currentTarget.dataset.index
     var flag = this.data.flag
-    var status = this.data.status
-    var des = this.data.taskList[0].des
+    var status = this.data.taskList[currIndex].status
+    var des = this.data.taskList[currIndex].des
     wx.navigateTo({
-      url: '../personTaskDetail/personTaskDetail?taskId=' + currIndex + '&flag=' + flag + '&status=' + status + '&des=' + des,
+      url: '../personTaskDetail/personTaskDetail?taskId=' + taskId + '&flag=' + flag + '&status=' + status + '&des=' + des,
     })
   },
   /**
@@ -61,11 +60,19 @@ Page({
       flag: flag,
       status: status
     })
-    var statustext = options.statustext
-    var title = (flag == 1 ? '我的发布' : '我的接取') + ' - ' + statustext
-    wx.setNavigationBarTitle({
-      title: title
-    })
+    if (options.history) {
+      var title = options.history == 1 ? '发布历史' : (options.history == 2 ? '接取历史' : '退款中心') 
+      wx.setNavigationBarTitle({
+        title: title
+      })
+    } else {
+      var statustext = options.statustext
+      var title = (flag == 1 ? '我的发布' : '我的接取') + ' - ' + statustext
+      wx.setNavigationBarTitle({
+        title: title
+      })
+    }
+    
     this.getTaskStatus(this.data.flag, this.data.status, this.data.index)
   },
 

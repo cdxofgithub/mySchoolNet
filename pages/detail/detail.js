@@ -122,7 +122,6 @@ Page({
         that.powerDrawer('open')
       }
     }) 
-    
   },
   // 自定义弹框
   powerDrawer: function (e) {

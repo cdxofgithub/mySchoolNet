@@ -13,7 +13,7 @@ export const request = (url, data, method, callback) => {
       if (res.data.status == '401') {
         wx.hideLoading()
         wx.showModal({
-          title: 'token过期',
+          title: 'token过期或未登录',
           content: '重新登录?',
           success: function (res) {
             if (res.confirm) {
@@ -45,7 +45,9 @@ function login() {
   // 登录
   wx.login({
     success: function (res) {
-      console.log(res.code)
+      wx.showLoading({
+        title: '登录中~',
+      })
       if (res.code) {
         var url = URL + '/f/api/user/login'
         var data = {
@@ -70,6 +72,7 @@ function login() {
                   accesstoken: res.data.data.accesstoken
                 }
                 request(url, JSON.stringify(data), 'POST', function (res) {
+                  wx.hideLoading()
                   if (res.data.status == '0') {
                     wxToast({
                       title: '信息更新成功'
@@ -102,6 +105,5 @@ function login() {
     }
   });
 }
-
 
 export const URL = 'http://1t896460i2.iask.in'

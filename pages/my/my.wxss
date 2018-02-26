@@ -7,43 +7,52 @@
   align-items: center;
   border-bottom: 1rpx solid #f1f1f1;
 }
+
 .header image {
   width: 50rpx;
   height: 50rpx;
 }
+
 .info {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+
 .avatar {
   margin-right: 50rpx;
 }
+
 .avatar image {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
 }
+
 .header .name {
   padding: 10rpx 0;
   display: flex;
   align-items: center;
 }
+
 .header .name .nickname {
   font-size: 44rpx;
   font-weight: 600;
 }
+
 .header .name .sex {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   font-size: 24rpx;
 }
+
 .header .name .sex image {
   width: 23rpx;
   height: 23rpx;
   margin-right: 10rpx;
 }
+
 .await {
   display: flex;
   justify-content: space-between;
@@ -51,35 +60,43 @@
   padding: 0 30rpx;
   margin-bottom: 50rpx;
 }
+
 .await .await_item {
   text-align: center;
 }
+
 .await .line {
   width: 2rpx;
   height: 30rpx;
   background: #ebebeb;
 }
+
 .await_item .name {
   font-weight: 500;
   font-size: 30rpx;
 }
+
 .await_item .num {
   font-size: 28rpx;
   margin-top: 10rpx;
   height: 28rpx;
 }
+
 .item {
+  position: relative;
   padding: 40rpx 30rpx;
   border-bottom: 1rpx solid #ebebeb;
   display: flex;
   justify-content: space-between;
   font-size: 34rpx;
 }
+
 .item .left {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+
 .item .left .icon {
   display: flex;
   align-items: center;
@@ -87,47 +104,65 @@
   width: 32rpx;
   height: 32rpx;
 }
+
 .item .left image {
   width: 32rpx;
   height: 32rpx;
 }
+
 .item .right {
   display: flex;
   align-items: center;
 }
+
 .item .right image {
   width: 17rpx;
   height: 30rpx;
 }
+
 .item .approve {
   font-size: 30rpx;
-  color: #999999;
+  color: #999;
+}
+
+.item button[plain] {
+  color: #333;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* tab */
+
 .swiper-tab {
   z-index: 10;
   width: 100%;
   box-shadow: 0px 2px 2px 2px #f1f1f1;
   text-align: center;
   line-height: 100rpx;
-  background: #ffffff;
+  background: #fff;
 }
 
 .swiper-tab-list {
-  background: #ffffff;
+  background: #fff;
   font-size: 32rpx;
   display: inline-block;
   width: 50%;
   color: #666;
   text-align: center;
 }
+
 .swiper-tab-list .name {
   width: 130rpx;
   height: 90rpx;
   text-align: center;
   margin: 0 auto;
 }
+
 .on {
   color: #f5ba2e;
   border-bottom: 5rpx solid #f5ba2e;
@@ -136,21 +171,20 @@
 .swiper-box {
   margin-top: 4rpx;
   padding-top: 60rpx;
-  background: #ffffff;
+  background: #fff;
 }
+
 .laba {
   padding: 20rpx 30rpx;
-  background: #ffffff;
+  background: #fff;
   font-size: 24rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
+
 .laba image {
   width: 50rpx;
   height: 50rpx;
   margin-right: 30rpx;
-}
-button {
-  height: 40rpx;
 }
