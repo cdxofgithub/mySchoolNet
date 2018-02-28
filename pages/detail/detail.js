@@ -67,6 +67,12 @@ Page({
       }, 1000)
     })
   },
+  //联系客服
+  concant: function() {
+    wx.makePhoneCall({
+      phoneNumber: '17698063599' 
+    })
+  },
   //接单
   receiving: function() {
     var that = this

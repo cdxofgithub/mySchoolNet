@@ -94,7 +94,9 @@
 
 
 <view class='bottom' wx:if="{{taskInfo.status == 1}}">
-  <view class='left'>待定
+<view class='left' catchtap='concant'>
+  <image src='../../images/call.png'></image>
+  联系客服
     <!-- <view class='comment' catchtap='comment'>
       <image src='../../images/comment.png'></image>
       <view class='flag'>评论</view>
