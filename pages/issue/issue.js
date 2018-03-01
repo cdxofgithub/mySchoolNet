@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    passAddress: false
+    passAddress: false,
+    havePhone: false
   },
   descInput: function (e) {
     this.setData({
@@ -33,66 +34,87 @@ Page({
       phone: e.detail.value
     })
   },
-  remarkInput: function(e) {
+  remarkInput: function (e) {
     this.setData({
       remark: e.detail.value
     })
   },
   submit: function () {
-    if (!this.data.describe) {
-      app.wxToast({
-        title: '描述不能为空'
-      })
-    } else if (!(/^[0-9]+.?[0-9]*$/.test(this.data.price)) || parseInt(this.data.price) < 1) { 
-      app.wxToast({
-        title: '赏金最低为1元'
-      })
-    } else if (!this.data.address && !this.data.passAddress) {
-      var that = this
-      wx.showModal({
-        title: '温馨提示',
-        content: '忽略送达地址吗',
-        success: function (res) {
-          if (res.confirm) {
-            that.setData({
-              passAddress: true
-            })
-          } else if (res.cancel) {
-            that.setData({
-              passAddress: false
-            })
-          }
-        }
-      })
-    } else if (!(/^1[34578]\d{9}$/.test(this.data.phone))) {
-      app.wxToast({
-        title: '号码格式错误'
-      })
-    } else {
-      wx.showLoading({
-        title: '发布中...',
-        mask: true
-      })
-      var url = app.utils.URL + '/f/api/mission/add'
-      var data = {
-        description: this.data.describe,
-        price: this.data.price,
-        phone: this.data.phone,
-        address: this.data.address,
-        remark: this.data.remark,
-        accesstoken: wx.getStorageSync('accesstoken')
+    //验证手机号
+    var that = this
+    var url = app.utils.URL + '/f/api/user/checkPhone'
+    var data = {
+      accesstoken: wx.getStorageSync('accesstoken')
+    }
+    app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+      console.log(res)
+      if (res.data.status == '0') {
+        that.setData({
+          havePhone: true
+        })
+      } else if (res.data.status == '009') {
+        that.setData({
+          havePhone: false
+        })
       }
-      var that = this
-      app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-        if (res.data.status == '0') {
-          that.getPayInfo(res.data.data.missionId)
-        } else {
+      if (that.data.havePhone) {
+        if (!that.data.describe) {
           app.wxToast({
-            title: '服务器内部错误'
+            title: '描述不能为空'
+          })
+        } else if (!(/^[0-9]+.?[0-9]*$/.test(that.data.price)) || parseInt(that.data.price) < 1) {
+          app.wxToast({
+            title: '赏金最低为1元'
+          })
+        } else if (!that.data.address && !that.data.passAddress) {
+          wx.showModal({
+            title: '温馨提示',
+            content: '忽略送达地址吗',
+            success: function (res) {
+              if (res.confirm) {
+                that.setData({
+                  passAddress: true
+                })
+              } else if (res.cancel) {
+                that.setData({
+                  passAddress: false
+                })
+              }
+            }
+          })
+        } else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
+          app.wxToast({
+            title: '号码格式错误'
+          })
+        } else {
+          wx.showLoading({
+            title: '发布中...',
+            mask: true
+          })
+          var url = app.utils.URL + '/f/api/mission/add'
+          var data = {
+            description: that.data.describe,
+            price: that.data.price,
+            phone: that.data.phone,
+            address: that.data.address,
+            remark: that.data.remark,
+            accesstoken: wx.getStorageSync('accesstoken')
+          }
+          app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+            if (res.data.status == '0') {
+              that.getPayInfo(res.data.data.missionId)
+            } else {
+              app.wxToast({
+                title: '服务器内部错误'
+              })
+            }
           })
         }
-      })
-    }
+      } else {
+        that.powerDrawer('open')
+      }
+
+    })
   },
   //取得支付信息 
   getPayInfo: function (missionId) {
@@ -150,6 +172,94 @@ Page({
     wx.navigateTo({
       url: '../coupon/coupon',
     })
+  },
+  // 自定义弹框
+  powerDrawer: function (e) {
+    if (e == 'open') {
+      this.util(e)
+    } else {
+      var currentStatu = e.currentTarget.dataset.statu;
+      this.util(currentStatu)
+    }
+
+
+  },
+  util: function (currentStatu) {
+    /* 动画部分 */
+    // 第1步：创建动画实例   
+    var animation = wx.createAnimation({
+      duration: 200,  //动画时长  
+      timingFunction: "linear", //线性  
+      delay: 0  //0则不延迟  
+    });
+
+    // 第2步：这个动画实例赋给当前的动画实例  
+    this.animation = animation;
+
+    // 第3步：执行第一组动画  
+    animation.opacity(0).rotateX(-100).step();
+
+    // 第4步：导出动画对象赋给数据对象储存  
+    this.setData({
+      animationData: animation.export()
+    })
+
+    // 第5步：设置定时器到指定时候后，执行第二组动画  
+    setTimeout(function () {
+      // 执行第二组动画  
+      animation.opacity(1).rotateX(0).step();
+      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象  
+      this.setData({
+        animationData: animation
+      })
+
+      //关闭  
+      if (currentStatu == "close") {
+        this.setData(
+          {
+            showModalStatus: false
+          }
+        );
+      }
+    }.bind(this), 200)
+
+    // 显示  
+    if (currentStatu == "open") {
+      this.setData(
+        {
+          showModalStatus: true
+        }
+      );
+    }
+  },
+
+  getPhoneNumber: function (e) {
+    console.log(e.detail.errMsg)
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      var url = app.utils.URL + '/f/api/user/updatePhone'
+      var data = {
+        accesstoken: wx.getStorageSync('accesstoken'),
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv
+      }
+      var that = this
+      console.log(data)
+      app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+        console.log(res)
+        if (res.data.status == '0') {
+          that.setData({
+            havePhone: true
+          })
+          app.wxToast({
+            title: '号码绑定成功！'
+          })
+        }
+      })
+    } else {
+      app.wxToast({
+        title: '取消了授权！'
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

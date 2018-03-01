@@ -14,12 +14,13 @@ export const request = (url, data, method, callback) => {
       if (res.data.status == '401') {
         wx.hideLoading()
         wx.showModal({
-          title: 'token过期或未登录',
-          content: '重新登录?',
+          title: '登陆已过期',
+          content: '点击确定重新登录',
           success: function (res) {
             if (res.confirm) {
               login()
             } else if (res.cancel) {
+
               wx.navigateBack()
             }
           }
@@ -32,7 +33,7 @@ export const request = (url, data, method, callback) => {
       } else {
         return typeof callback == "function" && callback(res)
       }
-      
+
     },
     fail: function (err) {
       console.log('请求失败')
@@ -78,11 +79,19 @@ function login() {
                   wx.hideLoading()
                   if (res.data.status == '0') {
                     wxToast({
-                      title: '信息更新成功'
+                      title: '登录成功'
                     })
-                    setTimeout(function () {
-                      wx.navigateBack()
-                    }, 1000)
+                    //获取页面栈
+                    var pages = getCurrentPages();
+                    console.log(pages)
+
+                    if (pages.length == 1) {
+                      return
+                    } else {
+                      setTimeout(function () {
+                        wx.navigateBack()
+                      }, 1000)
+                    }
                   } else {
                     wxToast({
                       title: '服务器内部出错'

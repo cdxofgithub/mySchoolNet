@@ -31,13 +31,18 @@ Page({
   logout: function() {
     wx.showModal({
       title: '确定退出吗？',
-      content: '再次登录需重新授权',
+      content: '退出后需重新登录',
       success: function (res) {
         if (res.confirm) {
           wx.removeStorageSync('accesstoken')
           app.wxToast({
             title: '退出成功！'
           })
+          setTimeout(function() {
+            wx.switchTab({
+              url: '../home/home',
+            })
+          }, 1000)
         } else if (res.cancel) {
           return;
         }
@@ -83,7 +88,7 @@ Page({
       var status = '5,6'
       history = 3
     } else {
-      var status = '1,2,3,4,5,6'
+      var status = '0,1,2,3,4,5,6'
     }
     
     wx.navigateTo({

@@ -81,9 +81,9 @@ App({
                       wxToast({
                         title: '信息更新成功'
                       })
-                      setTimeout(function() {
-                        wx.navigateBack()
-                      }, 1000)
+                      // setTimeout(function() {
+                      //   wx.navigateBack()
+                      // }, 1000)
                     }
                   })
                 }

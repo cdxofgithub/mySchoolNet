@@ -29,6 +29,7 @@ Page({
       index: index,
       accesstoken: wx.getStorageSync('accesstoken')
     }
+    console.log(data)
     var url = app.utils.URL + '/f/api/mission/listByMap'
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       setTimeout(function () {

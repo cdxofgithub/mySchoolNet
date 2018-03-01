@@ -64,7 +64,7 @@ Page({
             title: '服务器内部错误'
           })
         }
-      }, 800)
+      }, 1000)
     })
   },
   //联系客服
@@ -92,7 +92,6 @@ Page({
           havePhone: false
         })
       }
-      console.log(typeof that.data.havePhone)
       if (that.data.havePhone) {
         wx.showModal({
           title: '可赚赏金：￥' + that.data.taskInfo.price,
@@ -129,6 +128,7 @@ Page({
       }
     }) 
   },
+
   // 自定义弹框
   powerDrawer: function (e) {
     if (e == 'open') {
@@ -193,25 +193,32 @@ Page({
     // console.log(e.detail.errMsg)
     // console.log(e.detail.iv)
     // console.log(e.detail.encryptedData)
-    var url = app.utils.URL + '/f/api/user/updatePhone'
-    var data = {
-      accesstoken: wx.getStorageSync('accesstoken'),
-      encryptedData: e.detail.encryptedData,
-      iv: e.detail.iv
-    }
-    var that = this
-    console.log(data)
-    app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-      console.log(res)
-      if (res.data.status == '0') {
-        that.setData({
-          havePhone: true
-        })
-        app.wxToast({
-          title: '号码绑定成功！'
-        })
+    if (e.detail.errMsg == 'getPhoneNumber:ok') {
+      var url = app.utils.URL + '/f/api/user/updatePhone'
+      var data = {
+        accesstoken: wx.getStorageSync('accesstoken'),
+        encryptedData: e.detail.encryptedData,
+        iv: e.detail.iv
       }
-    })
+      var that = this
+      console.log(data)
+      app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+        console.log(res)
+        if (res.data.status == '0') {
+          that.setData({
+            havePhone: true
+          })
+          app.wxToast({
+            title: '号码绑定成功！'
+          })
+        }
+      })
+    } else {
+      app.wxToast({
+        title: '取消了授权！'
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载

@@ -55,3 +55,20 @@
   </view>
 </view>
 <view class='submit' catchtap='submit'>立即发布</view>
+
+<!-- 获取手机号码自定义弹框 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+  <!--drawer content-->
+  <view class="drawer_title">授权提示</view>
+  <view class="drawer_content">
+    <view class='rule'>授权需知：</view>
+    <view class='info'>● 接取任务前需获取您的手机号码；</view>
+    <view class='info'>● 请在确定后弹出的授权框中点击允许；</view>
+    <view class='info'>● 授权成功后，此将作为您的唯一认证号码。</view>
+  </view>
+  <button class="btn_ok" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" bindtap="powerDrawer" data-statu="close">确定</button>
+</view>
