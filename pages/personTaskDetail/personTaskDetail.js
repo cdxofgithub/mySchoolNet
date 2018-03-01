@@ -40,7 +40,7 @@ Page({
             title: '服务器内部错误'
           })
         }
-      }, 1000)
+      }, 800)
     })
   },
 
@@ -178,13 +178,22 @@ Page({
       title: des + ' - ' + '详情'
     })
     var currStatus = flag + status
+    console.log(currStatus)
     if (currStatus == '16' || currStatus == '15') {
       this.setData({
         buttonShow: false,
-        statusLightNum: 2,
+        statusLightNum: 3,
         firstStatusText: '待接单',
         SecondStatusText: '已取消',
         ThirdStatusText: '已退款',
+      })
+    } else if (currStatus == '10') {
+      this.setData({
+        buttonShow: false,
+        statusLightNum: 3,
+        firstStatusText: '待接单',
+        SecondStatusText: '已取消',
+        ThirdStatusText: '已关闭',
       })
     } else if (currStatus == '11') {
       this.setData({
@@ -214,10 +223,18 @@ Page({
         ThirdStatusText: '待确认',
         catchtapText: 'sureTask'
       })
+    } else if (currStatus == '20') {
+      this.setData({
+        buttonShow: false,
+        statusLightNum: 3,
+        firstStatusText: '待接单',
+        SecondStatusText: '已取消',
+        ThirdStatusText: '已关闭',
+      })
     } else if (currStatus == '25') {
       this.setData({
         buttonShow: false,
-        statusLightNum: 2,
+        statusLightNum: 3,
         firstStatusText: '已接单',
         SecondStatusText: '完成中',
         ThirdStatusText: '已取消'

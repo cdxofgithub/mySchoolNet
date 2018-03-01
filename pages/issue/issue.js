@@ -43,7 +43,7 @@ Page({
       app.wxToast({
         title: '描述不能为空'
       })
-    } else if (!(/^[0-9]+.?[0-9]*$/.test(this.data.price))) {  // || parseInt(this.data.price) < 1
+    } else if (!(/^[0-9]+.?[0-9]*$/.test(this.data.price)) || parseInt(this.data.price) < 1) { 
       app.wxToast({
         title: '赏金最低为1元'
       })
@@ -119,7 +119,7 @@ Page({
           },
           'fail': function (res) {
             if (res.errMsg == 'requestPayment:fail cancel') {
-              var url = app.utils.URL + '/f/api/mission/cancel'
+              var url = app.utils.URL + '/f/api/mission/cancelPay'
               var data = {
                 payinfoId: result.payinfo_id,
                 accesstoken: wx.getStorageSync('accesstoken')

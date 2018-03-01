@@ -9,6 +9,7 @@ export const request = (url, data, method, callback) => {
       'content-type': 'application/json'
     },
     success: function (res) {
+      console.log('请求成功')
       console.log(res)
       if (res.data.status == '401') {
         wx.hideLoading()
@@ -34,6 +35,8 @@ export const request = (url, data, method, callback) => {
       
     },
     fail: function (err) {
+      console.log('请求失败')
+      wx.stopPullDownRefresh()
       wxToast({
         title: '网络超时'
       })
@@ -106,4 +109,5 @@ function login() {
   });
 }
 
-export const URL = 'http://1t896460i2.iask.in'
+// export const URL = 'http://1t896460i2.iask.in'
+export const URL = 'https://www.easyprogramming.cn'

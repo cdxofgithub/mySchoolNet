@@ -21,7 +21,8 @@ Page({
       listFlag: 1, // 1刷新，2加
       mission_time: ''
     },
-    isRefresh: true
+    isRefresh: true,
+    firstLoad: true   // 第一次加载
   },
   swiperChange: function (e) {
     this.setData({
@@ -55,7 +56,7 @@ Page({
       //   taskListParams: that.data.taskListParams
       // })
       that.data.taskListParams.mission_time = '',
-      that.data.taskListParams.listFlag = 1
+        that.data.taskListParams.listFlag = 1
     } else if (state == 'up') {
       that.data.taskListParams.mission_time = that.data.taskList[(that.data.taskList.length - 1)].releaseTime
       that.data.taskListParams.listFlag = 2
@@ -64,7 +65,7 @@ Page({
       })
     } else {
       that.data.taskListParams.mission_time = '',
-      that.data.taskListParams.listFlag = 1
+        that.data.taskListParams.listFlag = 1
     }
     var data = that.data.taskListParams
     var url = app.utils.URL + '/f/api/mission/list'
@@ -89,7 +90,8 @@ Page({
             that.setData({
               taskList: res.data.data.missions, //任务列表
               updataTask: res.data.data.missions.length, //更新条数
-              isRefresh: true
+              isRefresh: true,
+              firstLoad: true
             })
             wx.stopPullDownRefresh()
             app.wxToast({
@@ -123,7 +125,7 @@ Page({
             })
           }
         }
-      }, 1000)
+      }, 800)
 
     })
   },
@@ -134,7 +136,7 @@ Page({
       url: '../detail/detail?taskId=' + currIndex
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -181,9 +183,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    // if (this.data.taskList.length < 6) {
-      
-    // }
+    if (this.data.firstLoad) {
+      if (this.data.taskList.length < 6) {
+        this.setData({
+          firstLoad: false,
+          isRefresh: false
+        })
+        return
+      }
+    }
     if (this.data.isRefresh) {
       var that = this
       that.getTaskList('up')

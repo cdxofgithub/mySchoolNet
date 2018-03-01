@@ -53,6 +53,10 @@ Page({
     })
   },
   getPersonInfo: function (flag) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     var url = app.utils.URL + '/f/api/mission/countByMap'
     var data = {
       flag: flag,
@@ -60,6 +64,8 @@ Page({
     }
     var that = this
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+      wx.hideLoading()
+      console.log(res)
       if (res.data.status == '0') {
         that.setData({
           issueStatusInfo: res.data.data

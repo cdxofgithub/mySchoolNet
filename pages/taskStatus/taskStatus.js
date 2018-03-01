@@ -17,8 +17,12 @@ Page({
     })
     var that = this
     if (flag == 1 && status == 6) {
-      status = '5,6'
+      status = '0,5,6'
     }
+    if (flag == 2 && status == 5) {
+      status = '0,5'
+    }
+
     var data = {
       flag: flag,
       status: status,

@@ -1,67 +1,89 @@
 <!--pages/detail/detail.wxml-->
 <import src="../../toast/toast.wxml" />
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
-<view class='content'>
-  <view class='item'>
-    <view class='avatar'>
-      <image src='{{taskInfo.headImg}}'></image>
-    </view>
-    <view class='content'>
-      <view class='top'>
-        <view>
-          <view class='name'>{{taskInfo.nickName}}</view>
-          <view class='school'>
-            <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
-        </view>
-        <view>
-          <view class='time'>{{taskInfo.distanceTime}}</view>
-          <view class='state'>
-            <image src='../../images/ling.png'></image>
+<view wx:if="{{taskInfo}}">
+  <view class='content'>
+    <view class='item'>
+      <view class='avatar'>
+        <image src='{{taskInfo.headImg}}'></image>
+      </view>
+      <view class='content'>
+        <view class='top'>
+          <view>
+            <view class='name'>{{taskInfo.nickName}}</view>
+            <view class='school'>
+              <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+          </view>
+          <view>
+            <view class='time'>{{taskInfo.distanceTime}}</view>
+            <view class='state'>
+              <image src='../../images/ling.png'></image>
+            </view>
           </view>
         </view>
+        <view class='detail'>{{taskInfo.content}}</view>
       </view>
-      <view class='detail'>{{taskInfo.content}}</view>
     </view>
   </view>
-</view>
-<view class='action'>
-  <view class='price'>
-    <image src='../../images/money.png'></image>
-    <view>已在线支付报酬
-      <text>{{taskInfo.price}}</text> 元</view>
+  <view class='action'>
+    <view class='price'>
+      <image src='../../images/money.png'></image>
+      <view>已在线支付报酬
+        <text>{{taskInfo.price}}</text> 元</view>
+    </view>
+    <view class='progress'>
+      <view class='circle_left'></view>
+    </view>
   </view>
-  <view class='progress'>
-    <view class='circle_left'></view>
+  <view class='action'>
+    <view class='price'>
+      <image src='../../images/remark.png'></image>
+      <view>{{taskInfo.remark? taskInfo.remark: '无备注'}}</view>
+    </view>
+    <view class='progress'>
+      <view class='circle_left'></view>
+    </view>
   </view>
-</view>
-<view class='action'>
-  <view class='price'>
-    <image src='../../images/remark.png'></image>
-    <view>{{taskInfo.remark? taskInfo.remark: '无备注'}}</view>
-  </view>
-  <view class='progress'>
-    <view class='circle_left'></view>
-  </view>
-</view>
-<view class='action'>
-  <div class="content-line">
-    <image src="../../images/progress.png"></image>
-    <div class="follow-up-route {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}"></div>
-    <image src="{{(taskInfo.status == 2 || taskInfo.status == 3)? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
-    <div class="follow-up-route {{taskInfo.status == 3? '' : 'un'}}"></div>
-    <image src="{{taskInfo.status == 3? '../../images/arrive.png' : '../../images/unArrive.png'}}"></image>
-  </div>
-  <div class="content-text">
-    <span class="content-title">发布中</span>
-    <span class="content-title {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}">被抢啦</span>
-    <span class="content-title {{taskInfo.status == 3? '' : 'un'}}">已完成</span>
-  </div>
-  <!-- <div class="content-text-time">
+  <view class='action'>
+    <div class="content-line">
+      <image src="../../images/progress.png"></image>
+      <div class="follow-up-route {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}"></div>
+      <image src="{{(taskInfo.status == 2 || taskInfo.status == 3)? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
+      <div class="follow-up-route {{taskInfo.status == 3? '' : 'un'}}"></div>
+      <image src="{{taskInfo.status == 3? '../../images/arrive.png' : '../../images/unArrive.png'}}"></image>
+    </div>
+    <div class="content-text">
+      <span class="content-title">发布中</span>
+      <span class="content-title {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}">被抢啦</span>
+      <span class="content-title {{taskInfo.status == 3? '' : 'un'}}">已完成</span>
+    </div>
+    <!-- <div class="content-text-time">
     <span class="content-time">2018-01-16 08:00</span>
     <span class="content-time">2018-01-16 09:00</span>
     <span class="content-time">2018-01-17 10:00</span>
   </div> -->
+  </view>
+  <view class='bottom' wx:if="{{taskInfo.status == 1}}">
+  <view class='left' catchtap='concant'>
+    <image src='../../images/call.png'></image>
+    联系客服
+    <!-- <view class='comment' catchtap='comment'>
+      <image src='../../images/comment.png'></image>
+      <view class='flag'>评论</view>
+    </view>
+    <view class='like' catchtap='isLike'>
+      <image src="{{like? '../../images/likeLight.png' : '../../images/like.png'}}"></image>
+      <view class='flag'>{{likeNum}}</view>
+    </view> -->
+  </view>
+  <view class='right' catchtap='receiving'>我要接单</view>
+  <!-- <view class='getPhone'>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+  </view> -->
 </view>
+</view>
+
+
 <!-- <view class='message'>
   <view class='message_tit'>全部评论
     <text>（1）</text>
@@ -92,25 +114,6 @@
   </view>
 </view>  -->
 
-
-<view class='bottom' wx:if="{{taskInfo.status == 1}}">
-<view class='left' catchtap='concant'>
-  <image src='../../images/call.png'></image>
-  联系客服
-    <!-- <view class='comment' catchtap='comment'>
-      <image src='../../images/comment.png'></image>
-      <view class='flag'>评论</view>
-    </view>
-    <view class='like' catchtap='isLike'>
-      <image src="{{like? '../../images/likeLight.png' : '../../images/like.png'}}"></image>
-      <view class='flag'>{{likeNum}}</view>
-    </view> -->
-  </view>
-  <view class='right' catchtap='receiving'>我要接单</view>
-  <!-- <view class='getPhone'>
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
-  </view> -->
-</view>
 <view class='review' wx:if="{{!isComment}}">
   <view class='top'>
     <view>评论</view>
@@ -127,19 +130,19 @@
   </view>
 </view>
 <!-- 获取手机号码自定义弹框 -->
-<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
-<!--content-->  
-<!--使用animation属性指定需要执行的动画-->  
-<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
-  
-  <!--drawer content-->  
-  <view class="drawer_title">授权提示</view>  
-  <view class="drawer_content"> 
-    <view class='rule'>授权需知：</view> 
-    <view class='info'>● 接取任务前需获取您的手机号码；</view>  
-    <view class='info'>● 请在确定后弹出的授权框中点击允许；</view> 
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+
+  <!--drawer content-->
+  <view class="drawer_title">授权提示</view>
+  <view class="drawer_content">
+    <view class='rule'>授权需知：</view>
+    <view class='info'>● 接取任务前需获取您的手机号码；</view>
+    <view class='info'>● 请在确定后弹出的授权框中点击允许；</view>
     <view class='info'>● 授权成功后，此将作为您的唯一认证号码。</view>
-  </view>  
+  </view>
   <button class="btn_ok" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" bindtap="powerDrawer" data-statu="close">确定</button>
-</view> 
+</view>
 <!-- <view class='shade' wx:if="{{!isComment}}" catchtap='close'></view> -->

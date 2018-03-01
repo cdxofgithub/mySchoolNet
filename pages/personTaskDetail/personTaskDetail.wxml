@@ -1,113 +1,115 @@
 <!--pages/detail/detail.wxml-->
 <import src="../../toast/toast.wxml" />
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
-<view class='content'>
-  <view class='item'>
-    <view class='avatar'>
-      <image src='{{taskInfo.headImg}}'></image>
-    </view>
-    <view class='content'>
-      <view class='top'>
-        <view>
-          <view class='name'>{{taskInfo.nickName}}</view>
-          <view class='school'>
-            <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
-        </view>
-        <view>
-          <view class='time'>{{taskInfo.distanceTime}}</view>
-          <view class='state'>
-            <image src='../../images/ling.png'></image>
+<view wx:if="{{taskInfo}}">
+  <view class='content'>
+    <view class='item'>
+      <view class='avatar'>
+        <image src='{{taskInfo.headImg}}'></image>
+      </view>
+      <view class='content'>
+        <view class='top'>
+          <view>
+            <view class='name'>{{taskInfo.nickName}}</view>
+            <view class='school'>
+              <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+          </view>
+          <view>
+            <view class='time'>{{taskInfo.distanceTime}}</view>
+            <view class='state'>
+              <image src='../../images/ling.png'></image>
+            </view>
           </view>
         </view>
+        <view class='detail'>{{taskInfo.content}}</view>
       </view>
-      <view class='detail'>{{taskInfo.content}}</view>
     </view>
   </view>
-</view>
-<view class='action'>
-  <view class='price'>
-    <image src='../../images/money.png'></image>
-    <view>已在线支付报酬
-      <text>{{taskInfo.price}}</text> 元</view>
+  <view class='action'>
+    <view class='price'>
+      <image src='../../images/money.png'></image>
+      <view>已在线支付报酬
+        <text>{{taskInfo.price}}</text> 元</view>
+    </view>
   </view>
-</view>
-<view class='action'>
-  <view class='price'>
-    <image src='../../images/remark.png'></image>
-    <view>{{taskInfo.remark? taskInfo.remark: '无备注'}}</view>
+  <view class='action'>
+    <view class='price'>
+      <image src='../../images/remark.png'></image>
+      <view>{{taskInfo.remark? taskInfo.remark: '无备注'}}</view>
+    </view>
   </view>
-</view>
-<view class='action'>
-  <view class="content-line">
-    <image src="../../images/progress.png"></image>
-    <view class="follow-up-route {{(statusLightNum > 1)? '' : 'un'}}"></view>
-    <image src="{{statusLightNum > 1 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
-    <view class="follow-up-route {{(statusLightNum > 2)? '' : 'un'}}"></view>
-    <image src="{{statusLightNum > 2 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
+  <view class='action'>
+    <view class="content-line">
+      <image src="../../images/progress.png"></image>
+      <view class="follow-up-route {{(statusLightNum > 1)? '' : 'un'}}"></view>
+      <image src="{{statusLightNum > 1 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
+      <view class="follow-up-route {{(statusLightNum > 2)? '' : 'un'}}"></view>
+      <image src="{{statusLightNum > 2 ? '../../images/progress.png' : '../../images/unProgress.png'}}"></image>
 
-  </view>
-  <view class="content-text">
-    <span class="content-title">{{firstStatusText}}</span>
-    <span class="content-title {{statusLightNum > 1 ? '' : 'un'}}">{{SecondStatusText}}</span>
+    </view>
+    <view class="content-text">
+      <span class="content-title">{{firstStatusText}}</span>
+      <span class="content-title {{statusLightNum > 1 ? '' : 'un'}}">{{SecondStatusText}}</span>
 
-    <span class="content-title {{statusLightNum > 2 ? '' : 'un'}}">{{ThirdStatusText}}</span>
+      <span class="content-title {{statusLightNum > 2 ? '' : 'un'}}">{{ThirdStatusText}}</span>
 
 
-  </view>
-  <!-- <view class="content-text-time">
+    </view>
+    <!-- <view class="content-text-time">
     <span class="content-time">2018-01-16 08:00</span>
     <span class="content-time">2018-01-16 09:00</span>
     <span class="content-time">2018-01-17 10:00</span>
   </view> -->
-</view>
+  </view>
 
-<view class='action' wx:if="{{taskInfo.cancelNickName}}">
-  <view class='price'>
-    <view class='receive'>接取人昵称：</view>
-    <view class='text'>{{taskInfo.cancelNickName}}</view>
+  <view class='action' wx:if="{{taskInfo.cancelNickName}}">
+    <view class='price'>
+      <view class='receive'>接取人昵称：</view>
+      <view class='text'>{{taskInfo.cancelNickName}}</view>
+    </view>
   </view>
-</view>
-<view class='action' wx:if="{{taskInfo.cancelPhone}}">
-  <view class='price'>
-    <view class='receive'>接取人电话：</view>
-    <view class='text'>{{taskInfo.cancelPhone}}</view>
+  <view class='action' wx:if="{{taskInfo.cancelPhone}}">
+    <view class='price'>
+      <view class='receive'>接取人电话：</view>
+      <view class='text'>{{taskInfo.cancelPhone}}</view>
+    </view>
   </view>
-</view>
-<view class='action' wx:if="{{taskInfo.cancelTime}}">
-  <view class='price'>
-    <view class='receive'>取消时间：</view>
-    <view class='text'>{{taskInfo.cancelTime}}</view>
+  <view class='action' wx:if="{{taskInfo.cancelTime}}">
+    <view class='price'>
+      <view class='receive'>取消时间：</view>
+      <view class='text'>{{taskInfo.cancelTime}}</view>
+    </view>
   </view>
-</view>
 
-<view class='action' wx:if="{{taskInfo.toNickName}}">
-  <view class='price'>
-    <view class='receive'>接取人昵称：</view>
-    <view class='text'>{{taskInfo.toNickName}}</view>
+  <view class='action' wx:if="{{taskInfo.toNickName}}">
+    <view class='price'>
+      <view class='receive'>接取人昵称：</view>
+      <view class='text'>{{taskInfo.toNickName}}</view>
+    </view>
   </view>
-</view>
 
-<view class='action' wx:if="{{taskInfo.toPhone}}">
-  <view class='price'>
-    <view class='receive'>接取人号码：</view>
-    <view class='text'>{{taskInfo.toPhone}}</view>
+  <view class='action' wx:if="{{taskInfo.toPhone}}">
+    <view class='price'>
+      <view class='receive'>接取人号码：</view>
+      <view class='text'>{{taskInfo.toPhone}}</view>
+    </view>
   </view>
-</view>
-<view class='action' wx:if="{{taskInfo.completeTime}}">
-  <view class='price'>
-    <view class='receive'>完成时间：</view>
-    <view class='text'>{{taskInfo.completeTime}}</view>
+  <view class='action' wx:if="{{taskInfo.completeTime}}">
+    <view class='price'>
+      <view class='receive'>完成时间：</view>
+      <view class='text'>{{taskInfo.completeTime}}</view>
+    </view>
   </view>
-</view>
-<!-- <view class='action' wx:if="{{taskInfo}}">
+  <!-- <view class='action' wx:if="{{taskInfo}}">
   <view class='price'>
     <view class='receive'>完成时间：</view>
     <view class='text'>{{taskInfo}}</view>
   </view>
 </view> -->
 
-<view class='footer' wx:if="{{buttonShow && currStatus != 22}}" catchtap='{{catchtapText}}'>{{buttonText}}</view>
-<view class='bottom' wx:if="{{buttonShow && currStatus == 22}}">
-  <view class='left' catchtap='receiveFinishTask'>取消任务</view>
-  <view class='right' catchtap='finishTask'>任务完成</view>
+  <view class='footer' wx:if="{{buttonShow && currStatus != 22}}" catchtap='{{catchtapText}}'>{{buttonText}}</view>
+  <view class='bottom' wx:if="{{buttonShow && currStatus == 22}}">
+    <view class='left' catchtap='receiveFinishTask'>取消任务</view>
+    <view class='right' catchtap='finishTask'>任务完成</view>
+  </view>
 </view>
