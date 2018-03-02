@@ -27,7 +27,7 @@
   </view>
   <view>
     <view class='bg_f1'></view>
-    <view class='laba' catchtap='concant'>
+    <view class='laba'>
       <view class='left'>
         <image src='../../images/laba.png'></image>
         <text>小提示：接取完成后别忘了及时联系雇主准确完成悬赏哦~</text>

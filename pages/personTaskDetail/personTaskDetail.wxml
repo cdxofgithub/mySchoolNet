@@ -33,7 +33,7 @@
     </view>
   </view>
 
-  <view class='action' wx:if="{{taskInfo.phone}}">
+  <view class='action' wx:if="{{taskInfo.phone}}" data-phone='{{taskInfo.phone}}' catchtap='issueContactPhone'>
     <view class='price'>
       <!-- <view class='receive'>雇主联系方式：</view> -->
       <image src='../../images/issuePhone.png'></image>
@@ -77,7 +77,7 @@
       <view class='text'>{{taskInfo.cancelNickName}}</view>
     </view>
   </view>
-  <view class='action' wx:if="{{taskInfo.cancelPhone}}">
+  <view class='action' wx:if="{{taskInfo.cancelPhone}}" data-phone='{{taskInfo.cancelPhone}}' catchtap='receiveContactPhone'>
     <view class='price'>
       <view class='receive'>接取人电话：</view>
       <view class='text'>{{taskInfo.cancelPhone}}</view>
@@ -97,7 +97,7 @@
     </view>
   </view>
 
-  <view class='action' wx:if="{{taskInfo.toPhone}}">
+  <view class='action' wx:if="{{taskInfo.toPhone}}" data-phone='{{taskInfo.toPhone}}' catchtap='receiveContactPhone'>
     <view class='price'>
       <view class='receive'>接取人号码：</view>
       <view class='text'>{{taskInfo.toPhone}}</view>

@@ -43,7 +43,26 @@ Page({
       }, 800)
     })
   },
-
+  //我的发布快速联系
+  issueContactPhone: function (e) {
+    console.log(this.data.flag)
+    if (this.data.flag != 1) {
+      var phone = e.currentTarget.dataset.phone
+      wx.makePhoneCall({
+        phoneNumber: phone
+      })
+    }
+  },
+  //我的接取快速联系
+  receiveContactPhone: function(e) {
+    console.log(this.data.flag)
+    if (this.data.flag == 1) {
+      var phone = e.currentTarget.dataset.phone
+      wx.makePhoneCall({
+        phoneNumber: phone
+      })
+    }
+  },
   //我的发布----取消任务
   cancelTask: function () {
     var that = this

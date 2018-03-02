@@ -29,7 +29,7 @@
 </view>
 <view wx:if="{{tips}}">
   <view class='bg_f1'></view>
-  <view class='laba' catchtap='concant'>
+  <view class='laba'>
     <view class='left'>
       <image src='../../images/laba.png'></image>
       <text>温馨小提示： 您在接取后可获得雇主的联系方式哦~</text>
