@@ -78,6 +78,37 @@ page {
   background: rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
+.laba {
+  padding: 20rpx 30rpx;
+  background: #fff;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.laba .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.laba .right {
+  display: flex;
+  align-items: center;
+}
+.laba .left text {
+  white-space:nowrap; 
+}
+.laba .left image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.laba .right image {
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 30rpx;
+}
+
 .bg_f1 {
   width: 100%;
   background: #f1f1f1;
@@ -114,6 +145,9 @@ page {
   font-size: 38rpx;
   text-align: center;
   line-height: 100rpx;
+}
+.fill {
+  height: 100rpx;
 }
 
 /* 自定义弹框 */

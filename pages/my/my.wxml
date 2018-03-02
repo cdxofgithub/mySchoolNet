@@ -21,11 +21,12 @@
   </view>
 </view>
 <view class='bg_f1'></view>
-<view class='laba'>
-  <image src='../../images/laba.png'></image>
-  <text>官方客服电话： 176 9806 3599</text>
+<view class='laba' catchtap='concant'>
+  <view class='left'>
+    <image src='../../images/laba.png'></image>
+    <text>官方客服电话： 176 9806 3599</text>
+  </view>
 </view>
-
 <view class='bg_f1'></view>
 <view class="swiper-tab">
   <view class="swiper-tab-list" data-current="0" bindtap="swichNav">

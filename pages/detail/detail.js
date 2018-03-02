@@ -190,9 +190,6 @@ Page({
   },
 
   getPhoneNumber: function (e) {
-    // console.log(e.detail.errMsg)
-    // console.log(e.detail.iv)
-    // console.log(e.detail.encryptedData)
     if (e.detail.errMsg == 'getPhoneNumber:ok') {
       var url = app.utils.URL + '/f/api/user/updatePhone'
       var data = {

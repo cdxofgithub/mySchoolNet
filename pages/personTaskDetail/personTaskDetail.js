@@ -223,6 +223,14 @@ Page({
         ThirdStatusText: '待确认',
         catchtapText: 'sureTask'
       })
+    } else if (currStatus == '14') {
+      this.setData({
+        buttonShow: false,
+        statusLightNum: 3,
+        firstStatusText: '待接单',
+        SecondStatusText: '完成中',
+        ThirdStatusText: '已完成'
+      })
     } else if (currStatus == '20') {
       this.setData({
         buttonShow: false,

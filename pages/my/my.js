@@ -85,7 +85,7 @@ Page({
     console.log(refund)
     var history = (flag == 1 ? 1 : 2)
     if (refund) {
-      var status = '5,6'
+      var status = '0,5,6'
       history = 3
     } else {
       var status = '0,1,2,3,4,5,6'
@@ -156,6 +156,12 @@ Page({
         }
       );
     }
+  },
+  //联系客服
+  concant: function () {
+    wx.makePhoneCall({
+      phoneNumber: '17698063599'
+    })
   },
   /**
    * 生命周期函数--监听页面加载

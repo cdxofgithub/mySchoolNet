@@ -32,6 +32,15 @@
         <text>{{taskInfo.price}}</text> 元</view>
     </view>
   </view>
+
+  <view class='action' wx:if="{{taskInfo.phone}}">
+    <view class='price'>
+      <!-- <view class='receive'>雇主联系方式：</view> -->
+      <image src='../../images/issuePhone.png'></image>
+      <view class='text'>{{taskInfo.phone}}</view>
+    </view>
+  </view>
+
   <view class='action'>
     <view class='price'>
       <image src='../../images/remark.png'></image>
@@ -112,4 +121,5 @@
     <view class='left' catchtap='receiveFinishTask'>取消任务</view>
     <view class='right' catchtap='finishTask'>任务完成</view>
   </view>
+  <view class='fill'></view>
 </view>

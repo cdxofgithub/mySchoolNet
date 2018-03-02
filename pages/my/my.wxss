@@ -173,18 +173,3 @@
   padding-top: 60rpx;
   background: #fff;
 }
-
-.laba {
-  padding: 20rpx 30rpx;
-  background: #fff;
-  font-size: 24rpx;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.laba image {
-  width: 50rpx;
-  height: 50rpx;
-  margin-right: 30rpx;
-}

@@ -21,6 +21,7 @@ Page({
       listFlag: 1, // 1刷新，2加
       mission_time: ''
     },
+    tips: true,
     isRefresh: true,
     firstLoad: true   // 第一次加载
   },
@@ -40,6 +41,12 @@ Page({
     // })
     app.wxToast({
       title: '正在施工中...'
+    })
+  },
+  //关闭tips
+  closeTip: function() {
+    this.setData({
+      tips: false
     })
   },
   //获取首页列表

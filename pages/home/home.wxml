@@ -1,5 +1,5 @@
 <!--pages/home/home.wxml-->
-<import src="../../toast/toast.wxml"/>
+<import src="../../toast/toast.wxml" />
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
 <view class="swiper-container">
   <swiper autoplay="auto" interval="5000" circular duration="500" bindchange="swiperChange" class="swiper">
@@ -9,7 +9,7 @@
       </swiper-item>
     </block>
   </swiper>
- 
+
   <view class="dots">
     <block wx:for="{{slider}}" wx:key="unique">
       <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
@@ -27,10 +27,24 @@
     <view>校粉领地</view>
   </view>
 </view>
+<view wx:if="{{tips}}">
+  <view class='bg_f1'></view>
+  <view class='laba' catchtap='concant'>
+    <view class='left'>
+      <image src='../../images/laba.png'></image>
+      <text>温馨小提示： 您在接取后可获得雇主的联系方式哦~</text>
+    </view>
+    <view class='right' catchtap='closeTip'>
+      <image class='disappear' src='../../images/disappear.png'></image>
+    </view>
+  </view>
+  <view class='bg_f1'></view>
+</view>
+
 <view class='container'>
   <view class='tit'>
     <view class='writ'></view>
-  最新悬赏令</view>
+    最新悬赏令</view>
   <view class='item' wx:for="{{taskList}}" wx:key="{{index}}" data-index="{{item.id}}" catchtap='toDetail'>
     <view class='avatar'>
       <image src='{{item.headImg}}'></image>
@@ -40,11 +54,13 @@
         <view>
           <view class='name'>{{item.nickName}}</view>
           <view class='school'>
-          <image src="{{item.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+            <image src="{{item.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
         </view>
         <view>
           <view class='time'>{{item.distanceTime}}</view>
-          <view class='state'><image src='../../images/ling.png'></image></view>
+          <view class='state'>
+            <image src='../../images/ling.png'></image>
+          </view>
         </view>
       </view>
       <view class='front'>{{item.content}}</view>
