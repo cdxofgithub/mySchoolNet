@@ -21,7 +21,7 @@
             </view>
           </view>
         </view>
-        <view class='detail'>{{taskInfo.realContent}}</view>
+        <view class='detail'><text class='mainColor' wx:if="{{taskInfo.content}}">【{{taskInfo.content}}】 </text><text wx:if="{{taskInfo.realContent}}"> {{taskInfo.realContent}}</text></view>
       </view>
     </view>
   </view>
@@ -32,7 +32,12 @@
         <text>{{taskInfo.price}}</text> 元</view>
     </view>
   </view>
-
+  <view class='action' wx:if="{{taskInfo.address}}">
+    <view class='price'>
+      <image src='../../images/delivery.png'></image>
+      <view>{{taskInfo.address}}</view>
+    </view>
+  </view>
   <view class='action' wx:if="{{taskInfo.phone}}" data-phone='{{taskInfo.phone}}' catchtap='issueContactPhone'>
     <view class='price'>
       <!-- <view class='receive'>雇主联系方式：</view> -->

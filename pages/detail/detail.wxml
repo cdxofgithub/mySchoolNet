@@ -21,7 +21,7 @@
             </view>
           </view>
         </view>
-        <view class='detail'>{{taskInfo.content}}</view>
+        <view class='detail'><text class='mainColor' wx:if="{{taskInfo.content}}">【{{taskInfo.content}}】 </text><text wx:if="{{taskInfo.realContent}}"> {{taskInfo.realContent}}</text></view>
       </view>
     </view>
   </view>

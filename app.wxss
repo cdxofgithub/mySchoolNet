@@ -48,7 +48,9 @@ page {
   display: block;
   margin: 0 auto 8px auto;
 }
-
+.mainColor {
+  color: #f5ba2e;
+}
 /* button按钮 */
 .submit {
   width: 70%;
