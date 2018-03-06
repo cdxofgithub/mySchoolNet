@@ -12,7 +12,7 @@
           <view>
             <view class='name'>{{taskInfo.nickName}}</view>
             <view class='school'>
-              <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+              <image src="{{taskInfo.sex == 1? '../../images/boy.png' : (taskInfo.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
           </view>
           <view>
             <view class='time'>{{taskInfo.distanceTime}}</view>
@@ -42,6 +42,24 @@
       <image src='../../images/money.png'></image>
       <view>已在线支付报酬
         <text>{{taskInfo.price}}</text> 元</view>
+    </view>
+    <view class='progress'>
+      <view class='circle_left'></view>
+    </view>
+  </view>
+  <view class='action'>
+    <view class='price'>
+      <image src='../../images/delivery.png'></image>
+      <view>{{taskInfo.address}}</view>
+    </view>
+    <view class='progress'>
+      <view class='circle_left'></view>
+    </view>
+  </view>
+  <view class='action' wx:if="{{taskInfo.phone}}">
+    <view class='price'>
+      <image src='../../images/phone.png'></image>
+      <view>{{taskInfo.phone}}</view>
     </view>
     <view class='progress'>
       <view class='circle_left'></view>

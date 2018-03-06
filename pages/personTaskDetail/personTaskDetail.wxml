@@ -21,7 +21,7 @@
             </view>
           </view>
         </view>
-        <view class='detail'>{{taskInfo.content}}</view>
+        <view class='detail'>{{taskInfo.realContent}}</view>
       </view>
     </view>
   </view>

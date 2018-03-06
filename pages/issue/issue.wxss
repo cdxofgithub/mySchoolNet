@@ -56,6 +56,13 @@ textarea {
   justify-content: flex-start;
   align-items: center;
 }
+.type .right {
+  width: 600rpx;
+}
+.type .right input {
+  width: 100%;
+  text-align: right;
+}
 .item .left {
   width: 200rpx;
 }

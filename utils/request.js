@@ -20,8 +20,12 @@ export const request = (url, data, method, callback) => {
             if (res.confirm) {
               login()
             } else if (res.cancel) {
-
-              wx.navigateBack()
+              var pages = getCurrentPages();
+              if (pages.length == 1) {
+                return
+              } else {
+                wx.navigateBack()
+              }
             }
           }
         })
@@ -57,9 +61,8 @@ function login() {
         var data = {
           code: res.code
         }
-        request(url, JSON.stringify(data), 'POST', function (res) {
-          if (res.data.status == '0') {
-            wx.setStorageSync('accesstoken', res.data.data.accesstoken)
+        request(url, JSON.stringify(data), 'POST', function (resa) {
+          if (resa.data.status == '0') {
             wx.getUserInfo({
               success: function (resp) {
                 var userInfo = resp.userInfo //用户基本信息
@@ -73,11 +76,12 @@ function login() {
                   nickName: nickName,
                   avatarUrl: avatarUrl,
                   gender: gender,
-                  accesstoken: res.data.data.accesstoken
+                  accesstoken: resa.data.data.accesstoken
                 }
                 request(url, JSON.stringify(data), 'POST', function (res) {
                   wx.hideLoading()
                   if (res.data.status == '0') {
+                    wx.setStorageSync('accesstoken', resa.data.data.accesstoken)
                     wxToast({
                       title: '登录成功'
                     })
@@ -97,6 +101,12 @@ function login() {
                       title: '服务器内部出错'
                     })
                   }
+                })
+              },
+              fail: res => {
+                wx.hideLoading()
+                wxToast({
+                  title: '登录需用户返回首页进行授权'
                 })
               }
             })

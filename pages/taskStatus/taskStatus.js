@@ -41,7 +41,7 @@ Page({
             currRefreshList: res.data.data.values
           })
         }
-      }, 800)
+      }, 600)
     })
   },
   //进入任务详情

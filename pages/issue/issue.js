@@ -14,6 +14,11 @@ Page({
       describe: e.detail.value
     })
   },
+  realInput: function(e) {
+    this.setData({
+      realContent: e.detail.value
+    })
+  },
   addressInput: function (e) {
     this.setData({
       address: e.detail.value
@@ -58,9 +63,13 @@ Page({
         })
       }
       if (that.data.havePhone) {
-        if (!that.data.describe) {
+        if (!that.data.realContent) {
           app.wxToast({
             title: '描述不能为空'
+          })
+        } else if (!that.data.describe) {
+          app.wxToast({
+            title: '类型不能为空'
           })
         } else if (!(/^[0-9]+.?[0-9]*$/.test(that.data.price)) || parseInt(that.data.price) < 1) {
           app.wxToast({
@@ -94,12 +103,14 @@ Page({
           var url = app.utils.URL + '/f/api/mission/add'
           var data = {
             description: that.data.describe,
+            realContent: that.data.realContent,
             price: that.data.price,
             phone: that.data.phone,
             address: that.data.address,
             remark: that.data.remark,
             accesstoken: wx.getStorageSync('accesstoken')
           }
+          console.log(data)
           app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
             if (res.data.status == '0') {
               that.getPayInfo(res.data.data.missionId)
