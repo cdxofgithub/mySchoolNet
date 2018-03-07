@@ -35,7 +35,7 @@
   <view class='action' wx:if="{{taskInfo.address}}">
     <view class='price'>
       <image src='../../images/delivery.png'></image>
-      <view>{{taskInfo.address}}</view>
+      <view>送到 {{taskInfo.address}}</view>
     </view>
   </view>
   <view class='action' wx:if="{{taskInfo.phone}}" data-phone='{{taskInfo.phone}}' catchtap='issueContactPhone'>

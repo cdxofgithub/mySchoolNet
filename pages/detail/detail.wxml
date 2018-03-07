@@ -46,11 +46,12 @@
     <view class='progress'>
       <view class='circle_left'></view>
     </view>
+    
   </view>
   <view class='action'>
     <view class='price'>
       <image src='../../images/delivery.png'></image>
-      <view>{{taskInfo.address}}</view>
+      <view>送到 {{taskInfo.address}}</view>
     </view>
     <view class='progress'>
       <view class='circle_left'></view>

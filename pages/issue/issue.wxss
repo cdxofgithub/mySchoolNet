@@ -16,12 +16,20 @@ page {
   border-bottom: 1rpx solid #ebebeb;
 }
 textarea {
-  width: 100%;
-  padding: 50rpx 0;
-  height: 120rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  height: 160rpx;
   font-size: 32rpx;
   letter-spacing: 2rpx;
+  border-radius: 8rpx;
   line-height: 36rpx;
+  border: 1rpx dashed #ebebeb;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.realContent {
+  padding: 30rpx 0;
+  background: #fff;
 }
 .addImg {
   width: 120rpx;
@@ -50,6 +58,9 @@ textarea {
   padding: 30rpx;
   border-bottom: 1rpx solid #ebebeb;
   font-size: 32rpx;
+}
+.item.address {
+  border-bottom: none;
 }
 .item .left, .item .right {
   display: flex;

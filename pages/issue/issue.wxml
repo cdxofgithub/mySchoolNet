@@ -1,17 +1,17 @@
 <!--pages/issue/issue.wxml-->
 <import src="../../toast/toast.wxml" />
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
-<view class='contant write'>
-  <textarea placeholder='请描述准确完整的悬赏信息~' bindinput="realInput"></textarea>
-  <!-- <view class='uploadImgs'>
+<!-- <view class='contant write'>
+  <textarea placeholder='请描述准确完整的悬赏信息~' bindinput="realInput"></textarea> -->
+<!-- <view class='uploadImgs'>
   </view>
   <view class='addImg'>
     <image src='../../images/addImg.png'></image>
   </view> -->
-</view>
-<view class='hint'>小提示： 真实信息只对接单的猎人提供~</view>
+<!-- </view> -->
+<!-- <view class='hint'>小提示： 真实信息只对接单的猎人提供~</view> -->
 <view class='contant'>
-<view class='item type'>
+  <view class='item type'>
     <view class='left'>
       <view>悬赏类型</view>
     </view>
@@ -38,14 +38,18 @@
       <input placeholder='请输入详细的地址哦' bindinput='addressInput'></input>
     </view>
   </view>
-  <view class='item phone'>
+  <!-- <view class='item phone'>
     <view class='left'>
       <view>联系方式</view>
     </view>
     <view class='right'>
       <input type='number' placeholder='请输入您的手机号码' bindinput='phoneInput'></input>
     </view>
-  </view>
+  </view> -->
+</view>
+<view class='hint'>小提示： 真实信息只对接单的猎人提供~</view>
+<view class='realContent'>
+  <textarea placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
 </view>
 <view class='item remark switch'>
   <view class='left'>
