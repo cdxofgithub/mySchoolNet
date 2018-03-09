@@ -63,11 +63,7 @@ Page({
         })
       }
       if (that.data.havePhone) {
-        if (!that.data.realContent) {
-          app.wxToast({
-            title: '描述不能为空'
-          })
-        } else if (!that.data.describe) {
+        if (!that.data.describe) {
           app.wxToast({
             title: '类型不能为空'
           })
@@ -91,11 +87,17 @@ Page({
               }
             }
           })
-        } else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
+        } else if (!that.data.realContent) {
           app.wxToast({
-            title: '号码格式错误'
+            title: '详细不能为空'
           })
-        } else {
+        }
+        //  else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
+        //   app.wxToast({
+        //     title: '号码格式错误'
+        //   })
+        // } 
+        else {
           wx.showLoading({
             title: '发布中...',
             mask: true
@@ -105,7 +107,7 @@ Page({
             description: that.data.describe,
             realContent: that.data.realContent,
             price: that.data.price,
-            phone: that.data.phone,
+            // phone: that.data.phone,
             address: that.data.address,
             remark: that.data.remark,
             accesstoken: wx.getStorageSync('accesstoken')

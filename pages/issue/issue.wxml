@@ -47,9 +47,9 @@
     </view>
   </view> -->
 </view>
-<view class='hint'>小提示： 真实信息只对接单的猎人提供~</view>
+<view class='hint'>小提示： 以下详细信息只对接单的猎人提供~</view>
 <view class='realContent'>
-  <textarea placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
+  <textarea bindinput="realInput" placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
 </view>
 <view class='item remark switch'>
   <view class='left'>

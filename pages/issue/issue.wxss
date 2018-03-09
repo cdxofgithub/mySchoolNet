@@ -45,7 +45,7 @@ textarea {
   height: 50rpx;
 }
 .hint {
-  padding: 15rpx;
+  padding: 15rpx 30rpx;
   font-size: 24rpx;
   color: #5c5c5c;
   background: #f1f1f1;
