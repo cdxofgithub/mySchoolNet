@@ -14,8 +14,10 @@ Page({
     },
     {
       picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg'
-    }
-    ],
+    }],
+    // slider: [{
+    //   picUrl: '../../images/banner-1.jpg'
+    // }],
     swiperCurrent: 0,
     taskListParams: {
       listFlag: 1, // 1刷新，2加

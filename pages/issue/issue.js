@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    passAddress: false,
+    realContentFocus: false,
     havePhone: false
   },
   descInput: function (e) {
@@ -71,25 +71,26 @@ Page({
           app.wxToast({
             title: '赏金最低为1元'
           })
-        } else if (!that.data.address && !that.data.passAddress) {
+        } else if (!that.data.address) {
+          app.wxToast({
+            title: '地址不能为空'
+          })
+        } else if (!that.data.realContent) {
           wx.showModal({
-            title: '温馨提示',
-            content: '忽略送达地址吗',
+            title: '详细信息未填写！',
+            content: '立即去填写？',
             success: function (res) {
               if (res.confirm) {
                 that.setData({
-                  passAddress: true
+                  realContentFocus: true
                 })
               } else if (res.cancel) {
                 that.setData({
-                  passAddress: false
+                  realContentFocus: false
                 })
+                that.issue()
               }
             }
-          })
-        } else if (!that.data.realContent) {
-          app.wxToast({
-            title: '详细不能为空'
           })
         }
         //  else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
@@ -98,35 +99,40 @@ Page({
         //   })
         // } 
         else {
-          wx.showLoading({
-            title: '发布中...',
-            mask: true
-          })
-          var url = app.utils.URL + '/f/api/mission/add'
-          var data = {
-            description: that.data.describe,
-            realContent: that.data.realContent,
-            price: that.data.price,
-            // phone: that.data.phone,
-            address: that.data.address,
-            remark: that.data.remark,
-            accesstoken: wx.getStorageSync('accesstoken')
-          }
-          console.log(data)
-          app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
-            if (res.data.status == '0') {
-              that.getPayInfo(res.data.data.missionId)
-            } else {
-              app.wxToast({
-                title: '服务器内部错误'
-              })
-            }
-          })
+          that.issue()
         }
       } else {
         that.powerDrawer('open')
       }
 
+    })
+  },
+  //发布
+  issue: function() {
+    var that = this
+    wx.showLoading({
+      title: '发布中...',
+      mask: true
+    })
+    var url = app.utils.URL + '/f/api/mission/add'
+    var data = {
+      description: that.data.describe,
+      realContent: that.data.realContent,
+      price: that.data.price,
+      // phone: that.data.phone,
+      address: that.data.address,
+      remark: that.data.remark,
+      accesstoken: wx.getStorageSync('accesstoken')
+    }
+    console.log(data)
+    app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+      if (res.data.status == '0') {
+        that.getPayInfo(res.data.data.missionId)
+      } else {
+        app.wxToast({
+          title: '服务器内部错误'
+        })
+      }
     })
   },
   //取得支付信息 
