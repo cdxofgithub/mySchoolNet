@@ -7,6 +7,9 @@ page {
   width: 690rpx;
   margin: 0 auto;
 } 
+.mainColor {
+  color: #f5ba2e;
+}
 /* 外部toast */
 
 .wxToast_mask {
