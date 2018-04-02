@@ -28,6 +28,11 @@ Page({
       this.getPersonInfo(parseInt(this.data.currentTab) + 1)
     }
   },
+  changeSchool: function() {
+    wx.navigateTo({
+      url: '../chooseSchool/chooseSchool'
+    })
+  },
   logout: function() {
     wx.showModal({
       title: '确定退出吗？',
@@ -70,7 +75,6 @@ Page({
     var that = this
     app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
       wx.hideLoading()
-      console.log(res)
       if (res.data.status == '0') {
         that.setData({
           issueStatusInfo: res.data.data
@@ -82,7 +86,6 @@ Page({
   toAllOrder: function(e) {
     var flag = e.currentTarget.dataset.flag
     var refund = e.currentTarget.dataset.refund
-    console.log(refund)
     var history = (flag == 1 ? 1 : 2)
     if (refund) {
       var status = '0,5,6'

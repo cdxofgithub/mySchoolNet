@@ -1,4 +1,12 @@
 var wxToast = require('../toast/toast.js')
+
+if (wx.getStorageSync('school') == '南阳理工学院') {
+  var url = 'https://www.easyprogramming.cn/wxw_tkjh'
+  // export const URL = 'https://www.easyprogramming.cn'
+} else {
+  var url = 'https://www.easyprogramming.cn/wxw_tkjh_meng'
+}
+export const URL = url
 export const request = (url, data, method, callback) => {
   method = method.toUpperCase()
   wx.request({
@@ -9,7 +17,6 @@ export const request = (url, data, method, callback) => {
       'content-type': 'application/json'
     },
     success: function (res) {
-      console.log('请求成功')
       console.log(res)
       if (res.data.status == '401') {
         wx.hideLoading()
@@ -29,7 +36,7 @@ export const request = (url, data, method, callback) => {
             }
           }
         })
-      } else if (res.data.status == '001' || res.data.status == '002' || res.data.status == '003' || res.data.status == '004' || res.data.status == '005' || res.data.status == '006' || res.data.status == '007' || res.data.status == '008' || res.data.status == '1') {
+      } else if (res.data.status == '001' || res.data.status == '002' || res.data.status == '003' || res.data.status == '004' || res.data.status == '005' || res.data.status == '006' || res.data.status == '007' || res.data.status == '011' || res.data.status == '008' || res.data.status == '1' || res.data.status == '010') {
         wxToast({
           title: res.data.message
         })
@@ -128,5 +135,5 @@ function login() {
   });
 }
 
-// export const URL = 'http://1t896460i2.iask.in'
-export const URL = 'https://www.easyprogramming.cn'
+
+

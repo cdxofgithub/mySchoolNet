@@ -7,7 +7,16 @@ Page({
    */
   data: {
     realContentFocus: false,
-    havePhone: false
+    havePhone: false,
+    array: [],
+    index: 0,
+    textareaHidden: true
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value,
+    })
   },
   descInput: function (e) {
     this.setData({
@@ -59,13 +68,14 @@ Page({
         })
       } else if (res.data.status == '009') {
         that.setData({
-          havePhone: false
+          havePhone: false,
+          textareaHidden: false
         })
       }
       if (that.data.havePhone) {
         if (!that.data.describe) {
           app.wxToast({
-            title: '类型不能为空'
+            title: '简介不能为空'
           })
         } else if (!(/^[0-9]+.?[0-9]*$/.test(that.data.price)) || parseInt(that.data.price) < 1) {
           app.wxToast({
@@ -119,7 +129,7 @@ Page({
       description: that.data.describe,
       realContent: that.data.realContent,
       price: that.data.price,
-      // phone: that.data.phone,
+      categoryId: that.data.array[that.data.index].id,
       address: that.data.address,
       remark: that.data.remark,
       accesstoken: wx.getStorageSync('accesstoken')
@@ -236,7 +246,8 @@ Page({
       if (currentStatu == "close") {
         this.setData(
           {
-            showModalStatus: false
+            showModalStatus: false,
+            textareaHidden: true
           }
         );
       }
@@ -280,11 +291,41 @@ Page({
       })
     }
   },
+  //获取类目
+  getSubject: function() {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    var url = app.utils.URL + '/f/api/category/list'
+    var data = {
+      accesstoken: wx.getStorageSync('accesstoken'),
+    }
+    var that = this
+    console.log(data)
+    app.utils.request(url, JSON.stringify(data), 'POST', function (res) {
+      wx.hideLoading()
+      var result = res.data.data.categories
+      var arr = []
+      var arrRang = []
+      result.forEach(function(e) {
+        var obj = {
+          id: e.id,
+          name: e.name
+        }
+        arr.push(obj)
+        arrRang.push(e.name)
+      })
+      that.setData({
+        array: arr,
+        arrRang: arrRang
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getSubject()
   },
 
   /**

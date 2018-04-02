@@ -30,7 +30,8 @@ Page({
     },
     tips: true,
     isRefresh: true,
-    firstLoad: true   // 第一次加载
+    firstLoad: true,   // 第一次加载
+    school: ''
   },
   swiperChange: function (e) {
     this.setData({
@@ -150,6 +151,7 @@ Page({
       url: '../detail/detail?taskId=' + currIndex
     })
   },
+
   // 检测授权状态
   checkSettingStatu: function (cb) {
     // 是否为空对象
@@ -163,12 +165,10 @@ Page({
     // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
     wx.getSetting({
       success: function success(res) {
-        console.log(res.authSetting);
         var authSetting = res.authSetting;
         if (isEmptyObject(authSetting)) {
           console.log('首次授权');
         } else {
-          console.log('不是第一次授权', authSetting);
           // 没有授权的提醒
           if (authSetting['scope.userInfo'] == false) {
             wx.showModal({
@@ -176,10 +176,9 @@ Page({
               content: '如需正常使用校园小叮当的服务功能，请按确定并在授权管理中选中“用户信息”，最后再重新进入小程序即可正常使用。',
               success: function (res) {
                 if (res.confirm) {
-                  console.log('用户点击确定')
                   wx.openSetting({
                     success: function success(res) {
-                      console.log('openSetting success', res.authSetting);
+
                     }
                   });
                 }
@@ -193,20 +192,25 @@ Page({
       }
     });
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     //调用应用实例的方法获取全局数据
-    wx.getUserInfo(function (userInfo) {
-      //更新用户数据
+    if (wx.getStorageSync('school')) {
+      wx.getUserInfo(function (userInfo) {
+        //更新用户数据
+        this.setData({
+          userInfo: userInfo
+        })
+      });
       this.setData({
-        userInfo: userInfo
+        school: wx.getStorageSync('school')
       })
-    });
+    }
     this.getTaskList()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -219,6 +223,12 @@ Page({
    */
   onShow: function () {
       this.checkSettingStatu()
+      if (this.data.school != wx.getStorageSync('school')) {
+        this.getTaskList()
+        this.setData({
+          school: wx.getStorageSync('school')
+        })
+      }
   },
 
   /**

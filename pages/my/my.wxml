@@ -16,7 +16,7 @@
       </view> -->
       </view>
     </view>
-
+    <image class='change' src='../../images/change.png' catchtap='changeSchool'></image>
     <image src='../../images/logout.png' catchtap='logout'></image>
   </view>
 </view>
@@ -100,11 +100,11 @@
   <swiper-item>
     <view>
       <view class='await'>
-        <view class='await_item' catchtap='getTaskStatus' data-status='5' data-statustext="已取消">
+        <!-- <view class='await_item' catchtap='getTaskStatus' data-status='5' data-statustext="已取消">
           <view class='name'>已取消</view>
           <view class='num'>{{issueStatusInfo['5']? issueStatusInfo['5'] : 0}}</view>
         </view>
-        <view class='line'></view>
+        <view class='line'></view> -->
         <view class='await_item' catchtap='getTaskStatus' data-status='2' data-statustext="待完成">
           <view class='name'>待完成</view>
           <view class='num'>{{issueStatusInfo['2']? issueStatusInfo['2'] : 0}}</view>

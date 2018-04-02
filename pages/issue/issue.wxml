@@ -13,10 +13,23 @@
 <view class='contant'>
   <view class='item type'>
     <view class='left'>
-      <view>悬赏类型</view>
+      <view>悬赏类目</view>
+    </view>
+    <view class='right picker'>
+      <view class='picker_wrap'>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrRang}}">{{array[index].name}}
+          <!-- <input placeholder='请选择悬赏类目~' disabled value='{{array[index].name}}'></input> -->
+        </picker>
+      </view>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view>
+  <view class='item type'>
+    <view class='left'>
+      <view>悬赏简介</view>
     </view>
     <view class='right'>
-      <input placeholder='请输入悬赏类型 (如：取快递等)' bindinput='descInput'></input>
+      <input placeholder='请用一句话介绍您的悬赏~' bindinput='descInput'></input>
     </view>
   </view>
   <view class='item price'>
@@ -49,7 +62,8 @@
 </view>
 <view class='hint'>小提示： 以下详细信息只对接单的猎人提供~</view>
 <view class='realContent'>
-  <textarea bindinput="realInput" focus="{{realContentFocus}}" placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
+  <textarea wx:if="{{textareaHidden}}" bindinput="realInput" focus="{{realContentFocus}}" placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
+  <view class='tibu' wx:if="{{!textareaHidden}}"></view>
 </view>
 <view class='item remark switch'>
   <view class='left'>

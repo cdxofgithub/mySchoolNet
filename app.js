@@ -6,26 +6,7 @@ App({
     var that = this
     // that.login()
     //检查登录态
-    wx.checkSession({
-      success: function () {
-        // var url = URL + '/f/api/user/checkToken'
-        // var data = {
-        //   accesstoken: wx.getStorageSync('accesstoken')
-        // }
-        // request(url, JSON.stringify(data), 'POST', function (res) {
-        //   if (res.data.status == '0') {
-        //     return
-        //   } else {
-        //     that.login()
-        //   }
-        // })
-      },
-      fail: function () {
-        console.log('过期')
-        //登录态过期
-        that.login()
-      }
-    })
+    that.checkSchool()
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
@@ -46,12 +27,42 @@ App({
     //   }
     // })
   },
+  //判断是哪所学校
+  checkSchool: function () {
+    if (!wx.getStorageSync('school')) {
+      wx.redirectTo({
+        url: './pages/chooseSchool/chooseSchool',
+      })
+    } else {
+      wx.checkSession({
+        success: function () {
+          // var url = URL + '/f/api/user/checkToken'
+          // var data = {
+          //   accesstoken: wx.getStorageSync('accesstoken')
+          // }
+          // request(url, JSON.stringify(data), 'POST', function (res) {
+          //   if (res.data.status == '0') {
+          //     return
+          //   } else {
+          //     that.login()
+          //   }
+          // })
+        },
+        fail: function () {
+          console.log('过期')
+          //登录态过期
+          that.login()
+        }
+      })
+    }
+  },
   login: function () {
     var that = this
     // 登录
     wx.login({
       success: function (res) {
         if (res.code) {
+          console.log(res.code)
           var url = URL + '/f/api/user/login'
           var data = {
             code: res.code

@@ -27,6 +27,12 @@ textarea {
   padding: 20rpx;
   box-sizing: border-box;
 }
+.tibu {
+  width: 380rpx;
+  height: 158rpx;
+  margin: 0 auto;
+  background: #fff;
+}
 .realContent {
   padding: 30rpx 0;
   background: #fff;
@@ -70,6 +76,24 @@ textarea {
 .type .right {
   width: 600rpx;
 }
+.type .right.picker {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.type .picker_wrap {
+  width: 100%;
+}
+.type .right picker {
+  width: 100%;
+  text-align: right;
+  color: #5c5c5c;
+}
+.type .right image {
+  width: 16rpx;
+  height: 30rpx;
+  margin-left: 30rpx;
+}
 .type .right input {
   width: 100%;
   text-align: right;
@@ -90,11 +114,6 @@ textarea {
 .item .left image {
   width: 20rpx;
   height: 20rpx;
-  margin-right: 15rpx;
-}
-.item .right image {
-  width: 30rpx;
-  height: 30rpx;
   margin-right: 15rpx;
 }
 .switch {

@@ -12,7 +12,7 @@
         <view>
           <view class='name'>{{item.nickName}}</view>
           <view class='school'>
-            <image src="{{item.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>南阳理工学院</view>
+            <image src="{{item.sex == 1? '../../images/boy.png' : (item.sex == 2 ? '../../images/girl.png' : '../../images/unknow.png')}}"></image>{{school}}</view>
         </view>
         <view>
           <view class='time'>{{item.distanceTime}}</view>
@@ -21,7 +21,7 @@
           </view>
         </view>
       </view>
-      <view class='front'>{{item.content}}</view>
+      <view class='front'><text class='mainColor' wx:if="{{item.categoryName}}">【{{item.categoryName}}】 </text> {{item.content}}</view>
       <view class='bottom'>
         <view class='hot'>{{item.des}}</view>
         <view class='line'></view>

@@ -10,7 +10,8 @@ Page({
     like: false,
     likeNum: 0,
     isComment: true,
-    showModalStatus: false
+    showModalStatus: false,
+    school: ''
   },
   comment: function() {
     if (this.data.isComment) {
@@ -223,7 +224,8 @@ Page({
   onLoad: function (options) {
     var taskId = options.taskId
     this.setData({
-      taskId: taskId
+      taskId: taskId,
+      school: wx.getStorageSync('school')
     })
     //获取任务详情
     this.getTaskDetail()

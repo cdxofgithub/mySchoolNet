@@ -1,0 +1,12 @@
+<!--pages/chooseSchool/chooseSchool.wxml-->
+<import src="../../toast/toast.wxml" />
+<template is="wxToast" data="{{...wxToastConfig}}"></template>
+<view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="chooseSchool">
+      <view class='school'>{{school}}</view>
+      <image src='../../images/right.png'></image>
+    </view>
+  </picker>
+  <view class='submit' catchtap='submit'>确定</view>
+</view>

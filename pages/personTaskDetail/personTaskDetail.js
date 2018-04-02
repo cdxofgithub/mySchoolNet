@@ -13,7 +13,8 @@ Page({
     firstStatusText: '',
     SecondStatusText: '',
     ThirdStatusText: '',
-    catchtapText: ''
+    catchtapText: '',
+    school: ''
   },
   //获取任务详情
   getTaskDetail: function () {
@@ -189,6 +190,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      school: wx.getStorageSync('school')
+    })
     var taskId = options.taskId
     var flag = options.flag
     var status = options.status

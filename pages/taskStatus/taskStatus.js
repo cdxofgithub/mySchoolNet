@@ -9,7 +9,8 @@ Page({
     isRefresh: true,
     index: 1,
     taskList: [],
-    show: false
+    show: false,
+    school: wx.getStorageSync('school')
   },
   getTaskStatus: function (flag, status, index) {
     wx.showLoading({

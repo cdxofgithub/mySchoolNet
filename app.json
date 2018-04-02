@@ -10,6 +10,7 @@
     "pages/detail/detail",
     "pages/taskStatus/taskStatus",
     "pages/personTaskDetail/personTaskDetail",
+    "pages/chooseSchool/chooseSchool",
     
     "pages/test/test",
     "pages/index/index",
