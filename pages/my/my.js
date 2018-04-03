@@ -181,6 +181,9 @@ Page({
         });
       }
     });
+    this.setData({
+      kefuPhone: wx.getStorageSync('kefuPhone')
+    })
   },
 
   /**

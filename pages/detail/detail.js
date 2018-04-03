@@ -71,7 +71,7 @@ Page({
   //联系客服
   concant: function() {
     wx.makePhoneCall({
-      phoneNumber: '17698063599' 
+      phoneNumber: this.data.kefuPhone
     })
   },
   //接单
@@ -225,7 +225,8 @@ Page({
     var taskId = options.taskId
     this.setData({
       taskId: taskId,
-      school: wx.getStorageSync('school')
+      school: wx.getStorageSync('school'),
+      kefuPhone: wx.getStorageSync('kefuPhone')
     })
     //获取任务详情
     this.getTaskDetail()

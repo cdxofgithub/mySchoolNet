@@ -105,10 +105,20 @@ textarea {
   width: 100%;
 }
 .price .right {
-  width: 220rpx;
+  width: 240rpx;
   text-align: center;
 }
-.phone .right, .address .right {
+.phone {
+  background: #fff;
+  padding: 30rpx 60rpx;
+}
+.phone .right {
+  width: 400rpx;
+}
+.phone .right input {
+  width: 100%;
+}
+.phone .right, .address .right, .name .right {
   text-align: right;
 }
 .item .left image {
@@ -116,10 +126,29 @@ textarea {
   height: 20rpx;
   margin-right: 15rpx;
 }
+.alternative {
+  background: #fff;
+  padding: 30rpx 60rpx;
+  margin-top: 30rpx;
+}
 .switch {
   margin-top: 30rpx;
   background: #fff;
   padding: 30rpx 60rpx;
+}
+.finishTime {
+  background: #fff;
+  padding: 30rpx 60rpx;
+}
+.finishTim .right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.finishTime .right image {
+  width: 16rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
 }
 .switch .right image {
   width: 16rpx;
@@ -141,3 +170,7 @@ textarea {
   width: 100%;
   text-align: right;
 }
+
+/* .optional {
+  height: auto;
+} */

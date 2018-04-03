@@ -10,7 +10,16 @@ Page({
     havePhone: false,
     array: [],
     index: 0,
-    textareaHidden: true
+    textareaHidden: true,
+    switchChange: false,
+
+    time: '默认12:00或者18:00',
+  },
+  bindTimeChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value
+    })
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -18,12 +27,22 @@ Page({
       index: e.detail.value,
     })
   },
+  switchChange: function (e) {
+    this.setData({
+      switchChange: e.detail.value
+    })
+  },
+  nameInput: function (e) {
+    this.setData({
+      nameValue: e.detail.value
+    })
+  },
   descInput: function (e) {
     this.setData({
       describe: e.detail.value
     })
   },
-  realInput: function(e) {
+  realInput: function (e) {
     this.setData({
       realContent: e.detail.value
     })
@@ -81,6 +100,10 @@ Page({
           app.wxToast({
             title: '赏金最低为1元'
           })
+        } else if (!that.data.nameValue) {
+          app.wxToast({
+            title: '姓名不能为空'
+          })
         } else if (!that.data.address) {
           app.wxToast({
             title: '地址不能为空'
@@ -102,13 +125,15 @@ Page({
               }
             }
           })
-        }
-        //  else if (!(/^1[34578]\d{9}$/.test(that.data.phone))) {
-        //   app.wxToast({
-        //     title: '号码格式错误'
-        //   })
-        // } 
-        else {
+        } else if (that.data.phone) {
+          if (!(/^1[345678]\d{9}$/.test(that.data.phone))) {
+            app.wxToast({
+              title: '号码格式错误'
+            })
+          } else {
+            that.issue()
+          }
+        } else {
           that.issue()
         }
       } else {
@@ -118,7 +143,7 @@ Page({
     })
   },
   //发布
-  issue: function() {
+  issue: function () {
     var that = this
     wx.showLoading({
       title: '发布中...',
@@ -132,6 +157,9 @@ Page({
       categoryId: that.data.array[that.data.index].id,
       address: that.data.address,
       remark: that.data.remark,
+      realName: that.data.nameValue,
+      phone: that.data.phone ? that.data.phone : '',
+      userCompleteTime: that.data.time == '默认12:00或者18:00' ? '' : (that.data.year + '-' + that.data.month + '-' + that.data.day + ' ' + that.data.time + ':' + '00'),
       accesstoken: wx.getStorageSync('accesstoken')
     }
     console.log(data)
@@ -292,7 +320,7 @@ Page({
     }
   },
   //获取类目
-  getSubject: function() {
+  getSubject: function () {
     wx.showLoading({
       title: '加载中...',
     })
@@ -307,7 +335,7 @@ Page({
       var result = res.data.data.categories
       var arr = []
       var arrRang = []
-      result.forEach(function(e) {
+      result.forEach(function (e) {
         var obj = {
           id: e.id,
           name: e.name
@@ -321,11 +349,26 @@ Page({
       })
     })
   },
+  getYearMonthDay: function () {
+    //获取完整的日期  
+    var date = new Date;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    month = (month < 10 ? "0" + month : month);
+    var day = date.getDate(); //获取当前日(1-31) 
+    day = (day < 10 ? "0" + day : day);
+    this.setData({
+      year: year,
+      month: month,
+      day: day
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getSubject()
+    this.getYearMonthDay()
   },
 
   /**

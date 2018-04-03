@@ -118,6 +118,18 @@
       <view class='text'>{{taskInfo.completeTime}}</view>
     </view>
   </view>
+  <view class='action' wx:if="{{taskInfo.realName}}">
+    <view class='price'>
+      <view class='receive'>真实姓名：</view>
+      <view class='text'>{{taskInfo.realName}}</view>
+    </view>
+  </view>
+  <view class='action' wx:if="{{taskInfo.userCompleteTime}}">
+    <view class='price'>
+      <view class='receive'>指定完成时间：</view>
+      <view class='text'>{{taskInfo.userCompleteTime}}</view>
+    </view>
+  </view>
   <!-- <view class='action' wx:if="{{taskInfo}}">
   <view class='price'>
     <view class='receive'>完成时间：</view>

@@ -43,6 +43,14 @@
       <text>元</text>
     </view>
   </view>
+  <view class='item name'>
+    <view class='left'>
+      <view>姓   名</view>
+    </view>
+    <view class='right'>
+      <input placeholder='请输入真实姓名~' bindinput='nameInput'></input>
+    </view>
+  </view>
   <view class='item address'>
     <view class='left'>
       <view>送达地址</view>
@@ -51,36 +59,66 @@
       <input placeholder='请输入详细的地址哦' bindinput='addressInput'></input>
     </view>
   </view>
-  <!-- <view class='item phone'>
-    <view class='left'>
-      <view>联系方式</view>
-    </view>
-    <view class='right'>
-      <input type='number' placeholder='请输入您的手机号码' bindinput='phoneInput'></input>
-    </view>
-  </view> -->
 </view>
 <view class='hint'>小提示： 以下详细信息只对接单的猎人提供~</view>
 <view class='realContent'>
   <textarea wx:if="{{textareaHidden}}" bindinput="realInput" focus="{{realContentFocus}}" placeholder='帮取快递（可直接粘贴快递短信）、食堂带饭、取水等~'></textarea>
   <view class='tibu' wx:if="{{!textareaHidden}}"></view>
 </view>
-<view class='item remark switch'>
+<!-- <view class='item remark switch'>
   <view class='left'>
     <view>备注</view>
   </view>
   <view class='right'>
     <input placeholder='别忘了备注哦~' bindinput='remarkInput'></input>
   </view>
-</view>
-<view class='item switch' catchtap='useCoupon'>
+</view> -->
+<view class='item alternative'>
   <view class='left'>
-    <view>使用优惠券</view>
+    <view>选填内容</view>
   </view>
   <view class='right'>
-    <image src='../../images/creatOrder_2.png'></image>
+    <switch color='#f5ba2e' bindchange="switchChange"></switch>
   </view>
 </view>
+<view wx:if="{{switchChange}}" class='optional'>
+  <view class='item remark switch'>
+    <view class='left'>
+      <view>备注</view>
+    </view>
+    <view class='right'>
+      <input placeholder='别忘了备注哦~' bindinput='remarkInput'></input>
+    </view>
+  </view>
+  <view class='item phone'>
+    <view class='left'>
+      <view>联系方式</view>
+    </view>
+    <view class='right'>
+      <input type='number' placeholder='不填则默认为当前绑定手机号码' bindinput='phoneInput'></input>
+    </view>
+  </view>
+  <picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="bindTimeChange">
+    <view class='item finishTime'>
+      <view class='left'>
+        <view>完成时间</view>
+      </view>
+      <view class='right'>
+        <view>{{time}}</view>
+        <image src='../../images/creatOrder_2.png'></image>
+      </view>
+    </view>
+  </picker>
+  <view class='item switch' catchtap='useCoupon'>
+    <view class='left'>
+      <view>使用优惠券</view>
+    </view>
+    <view class='right'>
+      <image src='../../images/creatOrder_2.png'></image>
+    </view>
+  </view>
+</view>
+
 <view class='submit' catchtap='submit'>立即发布</view>
 
 <!-- 获取手机号码自定义弹框 -->

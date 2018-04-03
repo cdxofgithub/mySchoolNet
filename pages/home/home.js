@@ -15,14 +15,7 @@ Page({
     // {
     //   picUrl: 'http://y.gtimg.cn/music/photo_new/T003R720x288M000000a4LLK2VXxvj.jpg'
     // }],
-    slider: [
-      {
-        picUrl: '../../images/banner-1.png',
-      },
-      {
-        picUrl: '../../images/banner-2.png',
-      },
-    ],
+    slider: [],
     swiperCurrent: 0,
     taskListParams: {
       listFlag: 1, // 1刷新，2加
@@ -209,6 +202,9 @@ Page({
         school: wx.getStorageSync('school')
       })
     }
+    this.setData({
+      slider: wx.getStorageSync('banner')
+    })
     this.getTaskList()
   },
   /**
@@ -226,7 +222,8 @@ Page({
       if (this.data.school != wx.getStorageSync('school')) {
         this.getTaskList()
         this.setData({
-          school: wx.getStorageSync('school')
+          school: wx.getStorageSync('school'),
+          slider: wx.getStorageSync('banner')
         })
       }
   },

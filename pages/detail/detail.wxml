@@ -92,11 +92,24 @@
       <span class="content-title {{(taskInfo.status == 2 || taskInfo.status == 3)? '' : 'un'}}">被抢啦</span>
       <span class="content-title {{taskInfo.status == 3? '' : 'un'}}">已完成</span>
     </div>
+    
     <!-- <div class="content-text-time">
     <span class="content-time">2018-01-16 08:00</span>
     <span class="content-time">2018-01-16 09:00</span>
     <span class="content-time">2018-01-17 10:00</span>
   </div> -->
+  </view>
+  <view class='action' wx:if="{{taskInfo.realName}}">
+    <view class='price'>
+      <view class='left'>真实姓名：</view>
+      <view >{{taskInfo.realName}}</view>
+    </view>
+  </view>
+  <view class='action' wx:if="{{taskInfo.userCompleteTime}}">
+    <view class='price'>
+      <view class='left'>指定完成时间：</view>
+      <view >{{taskInfo.userCompleteTime}}</view>
+    </view>
   </view>
   <view class='bottom' wx:if="{{taskInfo.status == 1}}">
     <view class='left' catchtap='concant'>

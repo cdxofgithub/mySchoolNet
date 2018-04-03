@@ -2,9 +2,19 @@ var wxToast = require('../toast/toast.js')
 
 if (wx.getStorageSync('school') == '南阳理工学院') {
   var url = 'https://www.easyprogramming.cn/wxw_tkjh'
+  wx.setStorageSync('banner', [
+    '../../images/banner-1.png',
+    '../../images/banner-2.png'
+  ])
+  wx.setStorageSync('kefuPhone', '176 9806 3599')
   // export const URL = 'https://www.easyprogramming.cn'
 } else {
   var url = 'https://www.easyprogramming.cn/wxw_tkjh_meng'
+  wx.setStorageSync('banner', [
+    '../../images/banner-3.png',
+    '../../images/banner-2.png'
+  ])
+  wx.setStorageSync('kefuPhone', '176 1483 0326')
 }
 export const URL = url
 export const request = (url, data, method, callback) => {

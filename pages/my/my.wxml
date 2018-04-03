@@ -24,7 +24,7 @@
 <view class='laba' catchtap='concant'>
   <view class='left'>
     <image src='../../images/laba.png'></image>
-    <text>官方客服电话： 176 9806 3599</text>
+    <text>官方客服电话： {{kefuPhone}}</text>
   </view>
 </view>
 <view class='bg_f1'></view>

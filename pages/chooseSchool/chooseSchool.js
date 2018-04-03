@@ -23,15 +23,24 @@ Page({
       wx.removeStorageSync('accesstoken')  
       if (this.data.school == '南阳理工学院') {
         app.utils.URL = "https://www.easyprogramming.cn/wxw_tkjh";
+        wx.setStorageSync('banner', [
+            '../../images/banner-1.png',
+            '../../images/banner-2.png'
+        ])
+        wx.setStorageSync('kefuPhone', '176 9806 3599')
       } else {
         app.utils.URL = "https://www.easyprogramming.cn/wxw_tkjh_meng";
+        wx.setStorageSync('banner', [
+          '../../images/banner-3.png',
+          '../../images/banner-2.png'
+        ])
+        wx.setStorageSync('kefuPhone', '176 1483 0326')
       } 
       app.login() 
       wx.setStorageSync('school', this.data.school) 
       wx.switchTab({
         url: '../home/home'
       })
-      
     } else {
       app.wxToast({
         title: '请选择学校！'

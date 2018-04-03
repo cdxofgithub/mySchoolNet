@@ -108,9 +108,13 @@
 }
 
 .top .name {
+  width: 400rpx;
   font-size: 32rpx;
   font-weight: 600;
   margin-bottom: 15rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 
 .top .school {
