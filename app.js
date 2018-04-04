@@ -62,8 +62,8 @@ App({
     wx.login({
       success: function (res) {
         if (res.code) {
-          console.log(res.code)
-          var url = URL + '/f/api/user/login'
+          var url = getApp().utils.URL + '/f/api/user/login'
+          console.log(url)
           var data = {
             code: res.code
           }
@@ -77,7 +77,7 @@ App({
                   var avatarUrl = userInfo.avatarUrl //头像链接
                   var gender = userInfo.gender //性别 0：未知、1：男、2：女
                   //更新用户信息
-                  var url = URL + '/f/api/user/updateUserInfo'
+                  var url = getApp().utils.URL + '/f/api/user/updateUserInfo'
                   var data = {
                     nickName: nickName,
                     avatarUrl: avatarUrl,
@@ -90,6 +90,7 @@ App({
                       wxToast({
                         title: '信息更新成功'
                       })
+                     
                       // setTimeout(function() {
                       //   wx.navigateBack()
                       // }, 1000)
